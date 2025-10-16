@@ -1,72 +1,64 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sports Hist India — Live Cricket Overview</title>
 <style>
   :root{
-    --primary:#0b6b3a; /* green like Cricbuzz */
+    --primary:#0b6b3a;
     --accent:#08a652;
     --dark:#1a1a1a;
     --muted:#6b6b6b;
     --card:#ffffff;
     --bg:#f4f6f4;
   }
-  *{box-sizing:border-box}
-  body{ margin:0; font-family: Inter, Roboto, Arial, sans-serif; background:var(--bg); color:var(--dark); }
-  header{ background:var(--primary); color:#fff; padding:14px 16px; display:flex; align-items:center; gap:12px; }
-  header h1{ margin:0; font-size:18px; font-weight:700; letter-spacing:0.2px; }
-  .logo-badge{ background:rgba(255,255,255,0.12); padding:6px 10px; border-radius:6px; font-weight:700; }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:Arial, sans-serif;background:var(--bg);color:var(--dark);}
+  header{background:var(--primary);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;}
+  header h1{margin:0;font-size:18px;font-weight:700;}
+  .logo-badge{background:rgba(255,255,255,0.12);padding:6px 10px;border-radius:6px;font-weight:700;}
 
-  nav.topnav{ display:flex; gap:8px; padding:10px 16px; background:#fff; align-items:center; border-bottom:1px solid #e6efe6; flex-wrap:wrap; }
-  nav.topnav a{ color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:6px; font-weight:600; }
-  nav.topnav a.active, nav.topnav a:hover{ background:var(--primary); color:#fff; }
+  nav.topnav{display:flex;gap:8px;padding:10px 16px;background:#fff;align-items:center;border-bottom:1px solid #e6efe6;flex-wrap:wrap;}
+  nav.topnav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:600;}
+  nav.topnav a.active, nav.topnav a:hover{background:var(--primary);color:#fff;}
 
-  .container{ max-width:1120px; margin:18px auto; padding:0 14px; }
-  .topbar{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:14px; flex-wrap:wrap; }
-  .search input{ width:320px; max-width:60vw; padding:10px 12px; border-radius:8px; border:1px solid #ddd; }
-  .controls{ display:flex; gap:8px; align-items:center; }
+  .container{max-width:1120px;margin:18px auto;padding:0 14px;}
+  .topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap;}
+  .search input{width:320px;max-width:60vw;padding:10px 12px;border-radius:8px;border:1px solid #ddd;}
+  .controls{display:flex;gap:8px;align-items:center;}
 
-  .layout{ display:grid; grid-template-columns: 1fr 360px; gap:16px; align-items:start; }
-  @media (max-width:900px){ .layout{ grid-template-columns: 1fr; } .search input{ width:100%; } }
+  .layout{display:grid;grid-template-columns:1fr 360px;gap:16px;align-items:start;}
+  @media (max-width:900px){ .layout{grid-template-columns:1fr;} .search input{width:100%;} }
 
-  /* Live grid */
-  #liveGrid{ display:grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+  #liveGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+  .card{background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(10,10,10,0.06);padding:12px;overflow:hidden;}
+  .match-card{cursor:pointer;transition:transform .12s ease, box-shadow .12s ease;}
+  .match-card:hover{transform:translateY(-6px);box-shadow:0 10px 22px rgba(0,0,0,0.08);}
+  .teams{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:6px;}
+  .series{color:var(--muted);font-size:13px;margin-bottom:8px;}
+  .score{text-align:center;font-weight:700;color:var(--primary);margin:6px 0;font-size:14px;}
+  .status{text-align:center;color:var(--muted);font-size:13px;}
+  .news{text-align:left;color:#333;font-size:13px;margin:6px 0;}
+  .media img{max-width:100%;border-radius:8px;margin-top:6px;}
+  .media iframe{width:100%;height:200px;margin-top:6px;border-radius:8px;}
 
-  .card{
-    background:var(--card); border-radius:10px; box-shadow:0 6px 18px rgba(10,10,10,0.06);
-    padding:12px; overflow:hidden;
-  }
+  aside .card{margin-bottom:12px;}
+  .upcoming-list, .points-list{display:flex;flex-direction:column;gap:8px;}
+  .upcoming-item{background:#fcfff8;padding:8px;border-radius:8px;border:1px solid #f0f7f0;font-size:14px;}
+  .points-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .points-table th, .points-table td{padding:8px;border:1px solid #eee;text-align:center;}
+  .points-table th{background:#f8fff8;}
 
-  .match-card{ cursor:pointer; transition:transform .12s ease, box-shadow .12s ease; }
-  .match-card:hover{ transform:translateY(-6px); box-shadow:0 10px 22px rgba(0,0,0,0.08); }
-  .teams{ display:flex; justify-content:space-between; font-weight:700; font-size:15px; margin-bottom:6px; }
-  .series{ color:var(--muted); font-size:13px; margin-bottom:8px; }
-  .score{ text-align:center; font-weight:700; color:var(--primary); margin:6px 0; font-size:14px; }
-  .status{ text-align:center; color:var(--muted); font-size:13px; }
+  #detailPanel{position:fixed;right:18px;top:80px;width:380px;max-width:94%;z-index:999;display:none;}
+  #detailPanel .card{max-height:76vh;overflow:auto;}
 
-  /* right column */
-  aside .card{ margin-bottom:12px; }
-  .upcoming-list, .points-list{ display:flex; flex-direction:column; gap:8px; }
-
-  .upcoming-item{ background:#fcfff8; padding:8px; border-radius:8px; border:1px solid #f0f7f0; font-size:14px; }
-  .points-table{ width:100%; border-collapse:collapse; font-size:13px; }
-  .points-table th, .points-table td{ padding:8px; border:1px solid #eee; text-align:center; }
-  .points-table th{ background:#f8fff8; }
-
-  /* detail modal panel */
-  #detailPanel{ position:fixed; right:18px; top:80px; width:380px; max-width:94%; z-index:999; display:none; }
-  #detailPanel .card{ max-height:76vh; overflow:auto; }
-
-  footer{ text-align:center; padding:12px; color:#666; font-size:13px; margin-top:18px; }
-
-  .btn{ background:var(--accent); color:#fff; padding:8px 10px; border-radius:8px; text-decoration:none; font-weight:700; cursor:pointer; border:none; }
-  .muted{ color:var(--muted); font-size:13px; }
+  footer{text-align:center;padding:12px;color:#666;font-size:13px;margin-top:18px;}
+  .btn{background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700;cursor:pointer;border:none;}
+  .muted{color:var(--muted);font-size:13px;}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo-badge">SHI</div>
   <h1>Sports Hist India</h1>
@@ -82,7 +74,7 @@
 
 <div class="container">
   <div class="topbar">
-    <div class="search"><input id="q" placeholder="Search team, series, country — e.g. India, T20 World Cup"/></div>
+    <div class="search"><input id="q" placeholder="Search team, series, match news..."/></div>
     <div class="controls">
       <button class="btn" onclick="manualRefresh()">Refresh</button>
       <div class="muted" id="lastUpdated">Last updated: —</div>
@@ -115,7 +107,7 @@
     <aside>
       <div class="card">
         <h3>About</h3>
-        <div class="muted">Sports Hist India — Cricbuzz-style overview. Data from Cricbuzz via RapidAPI. Replace <code>apiKey</code> with your RapidAPI key.</div>
+        <div class="muted">Sports Hist India — Cricbuzz-style overview. Update matches, news & media via JSON.</div>
       </div>
 
       <div class="card">
@@ -125,12 +117,7 @@
           <button class="btn" onclick="setAuto(30)">30s</button>
           <button class="btn" onclick="setAuto(60)">60s</button>
         </div>
-        <div style="margin-top:8px;" class="muted">Click a match card to open detailed scorecard.</div>
-      </div>
-
-      <div class="card">
-        <h3>Upcoming</h3>
-        <div id="rightUpcoming"></div>
+        <div style="margin-top:8px;" class="muted">Click a match card to open detailed news & media.</div>
       </div>
     </aside>
   </div>
@@ -141,221 +128,44 @@
   <div class="card" id="detailContent"></div>
 </div>
 
-<footer>© 2025 Sports Hist India — data via Cricbuzz (RapidAPI)</footer>
+<footer>© 2025 Sports Hist India</footer>
 
 <script>
-/* ---------------- CONFIG ----------------
-   Replace apiKey below with your RapidAPI key.
-   Keep this file private if you embed the key.
-*/
-const apiKey = 'YOUR_RAPIDAPI_KEY'; // <-- paste your RapidAPI key here
-const host = 'cricbuzz-cricket.p.rapidapi.com';
-let autoSeconds = 30;
-let autoTimer = null;
+/* ---------------- SAMPLE DATA ---------------- */
+let matchesData = [
+  {
+    "MatchID":1,
+    "Team1":"India A",
+    "Team2":"India B",
+    "Score":"45/1",
+    "Overs":"8.3",
+    "Status":"Live",
+    "News":"Team A started well. Player X scored a quick 25 runs.",
+    "MediaURL":"https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    "MatchID":2,
+    "Team1":"India C",
+    "Team2":"India D",
+    "Score":"120/4",
+    "Overs":"20",
+    "Status":"Finished",
+    "News":"Player Y scored 60 runs and took 2 wickets.",
+    "MediaURL":"https://via.placeholder.com/320x180.png"
+  }
+];
 
-/* ---------------- HELPERS ---------------- */
+/* ---------------- FUNCTIONS ---------------- */
 function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'}); }
 function setAuto(s){ autoSeconds = s; document.getElementById('autoSec').textContent = s; restartAuto(); }
 function manualRefresh(){ loadAll(); showTemp('Refreshing...'); }
+function showTemp(msg, ms=1300){ const t=document.createElement('div'); t.textContent=msg; Object.assign(t.style,{position:'fixed',left:'50%',transform:'translateX(-50%)',bottom:'20px',background:'#111',color:'#fff',padding:'8px 12px',borderRadius:'8px',zIndex:9999}); document.body.appendChild(t); setTimeout(()=>t.remove(), ms); }
 
-/* toast */
-function showTemp(msg, ms=1300){
-  const t = document.createElement('div');
-  t.textContent = msg;
-  Object.assign(t.style,{position:'fixed',left:'50%',transform:'translateX(-50%)',bottom:'20px',background:'#111',color:'#fff',padding:'8px 12px',borderRadius:'8px',zIndex:9999});
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(), ms);
-}
-
-/* API fetch wrapper */
-async function apiGet(path){
-  const url = `https://${host}${path}`;
-  const res = await fetch(url, {
-    method:'GET',
-    headers:{ 'x-rapidapi-host': host, 'x-rapidapi-key': apiKey }
-  });
-  if(!res.ok){
-    const txt = await res.text();
-    throw new Error(res.status + ' ' + txt);
-  }
-  return res.json();
-}
-
-/* ---------------- LOADERS ---------------- */
-
-/* Load live matches (best-effort multiple endpoints) */
-async function loadLive(){
-  const grid = document.getElementById('liveGrid');
-  grid.innerHTML = '<div class="card muted">Loading live matches...</div>';
-  let data = null;
-  const paths = ['/matches/v1/recent','/mcenter/v1/recent','/matches/v1/live'];
-  for(const p of paths){
-    try{ data = await apiGet(p); if(data) { console.log('loaded',p); break; } } catch(e){ console.warn('fail',p,e.message); }
-  }
-  if(!data){ grid.innerHTML = '<div class="card muted">Unable to fetch live matches. Check API key / CORS (see console).</div>'; return; }
-
-  // find array
-  let matches = data.matches || data.data || data || [];
-  if(!Array.isArray(matches)){
-    for(const k in data) if(Array.isArray(data[k])) { matches = data[k]; break; }
-  }
-  if(!matches || matches.length===0){ grid.innerHTML = '<div class="card muted">No live matches currently.</div>'; return; }
-
-  const q = (document.getElementById('q').value || '').trim().toLowerCase();
-  grid.innerHTML = '';
-  matches.forEach(m=>{
-    // robust extraction
-    const id = m.id || m.matchId || m.mid || (m.match && m.match.id) || '';
-    let t1 = (m.team1 && (m.team1.name||m.team1.sName||m.team1.shortName)) || m.t1 || (m.teamA && m.teamA.name) || '';
-    let t2 = (m.team2 && (m.team2.name||m.team2.sName||m.team2.shortName)) || m.t2 || (m.teamB && m.teamB.name) || '';
-    if(!t1 && !t2 && m.title){ const ps = m.title.split(' vs '); t1 = ps[0]||''; t2 = ps[1]||''; }
-    const series = m.series || m.seriesName || m.compName || '';
-    const score = m.score || m.scoreString || m.matchScore || (m.t1score || '') || '';
-    const status = m.status || m.matchStatus || m.statusMessage || (m.live ? 'Live' : '') || '';
-
-    const combined = (t1 + ' ' + t2 + ' ' + series).toLowerCase();
-    if(q && !combined.includes(q)) return;
-
+function loadLive(){
+  const grid = document.getElementById('liveGrid'); grid.innerHTML="";
+  matchesData.forEach(m=>{
     const card = document.createElement('div');
-    card.className = 'card match-card';
-    card.dataset.matchId = id || '';
-    card.innerHTML = `
-      <div class="teams"><span>${t1 || 'Team A'}</span><span>${t2 || 'Team B'}</span></div>
-      <div class="series">${series}</div>
-      <div class="score">${score || ''}</div>
-      <div class="status">${status || ''}</div>
-    `;
-    card.addEventListener('click', ()=> onMatchClick(card.dataset.matchId, m));
-    grid.appendChild(card);
-  });
-}
-
-/* On clicking a match — fetch detailed hscard if id present */
-async function onMatchClick(matchId, raw){
-  const panel = document.getElementById('detailPanel');
-  const content = document.getElementById('detailContent');
-  panel.style.display = 'block';
-  content.innerHTML = '<div class="muted">Loading match details...</div>';
-  if(!matchId){ content.innerHTML = `<pre>${JSON.stringify(raw,null,2)}</pre>`; return; }
-  try{
-    const detail = await apiGet(`/mcenter/v1/${matchId}/hscard`);
-    // Format common parts
-    let html = `<h3>Match ID: ${matchId}</h3><div class="muted">${(detail.matchHeader && detail.matchHeader.seriesName) || ''}</div><hr/>`;
-    // try to show simple score summary if present
-    if(detail.matchHeader){
-      const mh = detail.matchHeader;
-      html += `<div style="font-weight:700;margin-bottom:6px">${(mh.team1 && mh.team1.name)||''} vs ${(mh.team2 && mh.team2.name)||''}</div>`;
-      if(mh.status) html += `<div class="muted">${mh.status}</div>`;
-    }
-    // fallback: pretty JSON
-    html += `<pre style="white-space:pre-wrap;font-size:13px;margin-top:8px">${JSON.stringify(detail,null,2)}</pre>`;
-    content.innerHTML = html;
-  } catch(e){
-    console.error('detail err', e);
-    content.innerHTML = `<div class="muted">Unable to load details. See console for error.</div><pre>${e.message}</pre>`;
-  }
-  // auto hide after 45s
-  clearTimeout(panel._hideTimer);
-  panel._hideTimer = setTimeout(()=> panel.style.display='none', 45000);
-}
-
-/* Upcoming matches — best-effort */
-async function loadUpcoming(){
-  const cont = document.getElementById('upcomingList');
-  cont.innerHTML = '<div class="card muted">Loading upcoming...</div>';
-  try{
-    const data = await apiGet('/matches/v1/upcoming');
-    let list = data.matches || data || [];
-    if(!Array.isArray(list)){ for(const k in data) if(Array.isArray(data[k])) { list=data[k]; break; } }
-    if(!list || list.length===0){ cont.innerHTML = '<div class="card muted">No upcoming matches.</div>'; return; }
-    cont.innerHTML = '';
-    list.slice(0,8).forEach(m=>{
-      const t1 = (m.team1 && m.team1.name) || m.t1 || '';
-      const t2 = (m.team2 && m.team2.name) || m.t2 || '';
-      const dt = m.startDate || m.matchDate || m.date || m.startTime || '';
-      const card = document.createElement('div'); card.className='upcoming-item'; card.innerHTML = `<strong>${t1} vs ${t2}</strong><div class="muted">${dt}</div>`;
-      cont.appendChild(card);
-    });
-    // right side also
-    const r = document.getElementById('rightUpcoming'); r.innerHTML = cont.innerHTML;
-  } catch(e){
-    cont.innerHTML = '<div class="card muted">Unable to load upcoming (see console)</div>';
-  }
-}
-
-/* Series / tournaments placeholder (from matches or static) */
-async function loadSeries(){
-  const el = document.getElementById('seriesList');
-  el.innerHTML = '<div class="card muted">Loading series...</div>';
-  try{
-    // try to reuse recent endpoint to extract series names
-    const rec = await apiGet('/matches/v1/recent');
-    let list = rec.matches || rec || [];
-    const seriesMap = {};
-    (Array.isArray(list) ? list : []).forEach(m=>{
-      const s = m.series || m.seriesName || m.compName || 'Misc';
-      if(!seriesMap[s]) seriesMap[s] = 0;
-      seriesMap[s]++;
-    });
-    el.innerHTML = '';
-    for(const s in seriesMap){
-      const c = document.createElement('div'); c.className='card'; c.style.marginBottom='8px';
-      c.innerHTML = `<strong>${s}</strong><div class="muted">${seriesMap[s]} matches</div>`;
-      el.appendChild(c);
-    }
-    if(!Object.keys(seriesMap).length) el.innerHTML = '<div class="card muted">No series info.</div>';
-  } catch(e){
-    el.innerHTML = '<div class="card muted">Unable to load series (see console)</div>';
-  }
-}
-
-/* Points table placeholder (if API has points endpoint it can be fetched) */
-async function loadPoints(){
-  const el = document.getElementById('pointsContainer');
-  el.innerHTML = '<div class="card muted">Loading points table...</div>';
-  // best-effort: show sample static until API endpoint is known
-  setTimeout(()=> {
-    el.innerHTML = `<div class="card"><table class="points-table"><tr><th>Team</th><th>Mat</th><th>W</th><th>L</th><th>Pts</th></tr>
-      <tr><td>India</td><td>4</td><td>3</td><td>1</td><td>6</td></tr>
-      <tr><td>Australia</td><td>4</td><td>2</td><td>2</td><td>4</td></tr>
-    </table></div>`;
-  }, 350);
-}
-
-/* ---------------- AUTO REFRESH ---------------- */
-function startAuto(){ stopAuto(); autoTimer = setInterval(()=> { loadAll(); }, autoSeconds*1000); document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString(); }
-function stopAuto(){ if(autoTimer) clearInterval(autoTimer); autoTimer = null; }
-function restartAuto(){ stopAuto(); startAuto(); }
-
-/* ---------------- MASTER LOAD ---------------- */
-async function loadAll(){
-  try{
-    await loadLive();
-    await loadUpcoming();
-    await loadSeries();
-    await loadPoints();
-    document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
-  }catch(e){
-    console.error('loadAll error', e);
-  }
-}
-
-/* Debounce search */
-let timer = null;
-document.getElementById('q').addEventListener('input', ()=>{
-  if(timer) clearTimeout(timer);
-  timer = setTimeout(()=> loadLive(), 450);
-});
-
-/* START */
-document.getElementById('autoSec').textContent = autoSeconds;
-loadAll();
-startAuto();
-
-/* Helpful: if CORS error happens, show instruction in console */
-window.addEventListener('error', (e)=> {
-  // no-op but keep console visible
-});
-</script>
-</body>
-</html>
+    card.className='card match-card';
+    card.dataset.id=m.MatchID;
+    card.innerHTML=`<div class="teams"><span>${m.Team1}</span> vs <span>${m.Team2}</span></div>
+      <div class="score">${m.Score}</div>

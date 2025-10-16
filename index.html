@@ -38,7 +38,7 @@ th{background:#333;color:white;}
 
 <!-- Live Matches Section -->
 <h2 id="live">Live Matches</h2>
-<div id="liveMatches">
+<div id="liveMatches"><div id="liveMatches"></div>
   <!-- Match cards will be dynamically added here -->
 </div>
 
@@ -141,5 +141,33 @@ function renderSeries(){
 renderSeries();
 </script>
 
-</body>
+</body><script>
+  const apiUrl = 'https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent';
+
+  fetch(apiUrl, {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Host': 'cricbuzz-cricket.p.rapidapi.com',
+      'X-RapidAPI-Key': 'YOUR_RAPIDAPI_KEY'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    const matches = data.matches;
+    let liveMatchesHTML = '';
+
+    matches.forEach(match => {
+      liveMatchesHTML += `
+        <div class="match-card">
+          <div class="teams">${match.team1.name} vs ${match.team2.name}</div>
+          <div class="score">${match.score}</div>
+          <div class="status">${match.status}</div>
+        </div>
+      `;
+    });
+
+    document.getElementById('liveMatches').innerHTML = liveMatchesHTML;
+  })
+  .catch(error => console.error('Error fetching live match data:', error));
+</script>
 </html>

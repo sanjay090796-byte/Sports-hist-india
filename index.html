@@ -1,365 +1,106 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Sports hist india — Live Cricket Overview</title>
-<style>
-  :root{
-    --accent:#ff6f00;
-    --dark:#333;
-    --muted:#777;
-    --card-bg:#fff;
-    --page-bg:#f2f2f2;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;font-family:Inter, "Segoe UI", Roboto, Arial; background:var(--page-bg); color:var(--dark);
-  }
-  header{
-    background:var(--accent); color:#fff; padding:14px 16px; text-align:center;
-  }
-  header h1{ margin:0; font-size:20px; letter-spacing:0.2px; }
-  nav{ display:flex; justify-content:center; gap:8px; background:var(--dark); padding:8px 6px; flex-wrap:wrap; }
-  nav a{ color:#fff; padding:8px 14px; text-decoration:none; font-weight:600; border-radius:6px; }
-  nav a:hover{ background:#555; }
-
-  .container{ max-width:1100px; margin:18px auto; padding:0 12px; }
-
-  .top-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:space-between; margin-bottom:12px; }
-  .search { flex:1; min-width:220px; }
-  .search input{ width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ddd; }
-
-  .cols{ display:grid; grid-template-columns: 1fr 340px; gap:16px; align-items:start; }
-  @media (max-width:880px){ .cols{ grid-template-columns: 1fr; } }
-
-  /* Live matches list */
-  #liveMatches{ display:grid; gap:12px; }
-  .match-card{
-    background:var(--card-bg); padding:12px; border-radius:8px; box-shadow:0 6px 14px rgba(0,0,0,0.06);
-    display:flex; flex-direction:column; gap:8px; cursor:pointer; transition:transform .12s ease;
-  }
-  .match-card:hover{ transform:translateY(-4px); }
-  .teams{ display:flex; justify-content:space-between; font-weight:700; font-size:16px; }
-  .meta{ display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:13px; }
-  .scoreline{ text-align:center; font-weight:600; color:#0a7; } /* green-ish */
-  .status{ text-align:center; color:var(--muted); font-size:13px; }
-
-  /* Right column widgets */
-  .card{ background:var(--card-bg); padding:12px; border-radius:8px; box-shadow:0 6px 14px rgba(0,0,0,0.06); margin-bottom:12px; }
-  .card h3{ margin:0 0 8px 0; font-size:16px; }
-  .upcoming-list, .points-tbl{ display:flex; flex-direction:column; gap:8px; }
-
-  table{ width:100%; border-collapse:collapse; font-size:13px; }
-  th,td{ padding:8px; border:1px solid #eee; text-align:center; }
-  th{ background:#f7f7f7; font-weight:700; }
-
-  /* details modal-ish area */
-  #detailBox{ position:fixed; right:18px; bottom:18px; width:360px; max-width:92%; z-index:120; display:none; }
-  #detailBox .card{ max-height:70vh; overflow:auto; }
-
-  footer{ text-align:center; padding:12px; color:#fff; background:var(--dark); margin-top:18px; font-size:13px; }
-
-  .small{ font-size:13px; color:var(--muted); }
-  .btn{ display:inline-block; padding:8px 10px; background:var(--accent); color:#fff; border-radius:6px; cursor:pointer; text-decoration:none; font-weight:600; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sports Hist India - Live Cricket Score</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0275d8;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 1.5em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    #liveMatches {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+      gap: 20px;
+    }
+    .match-card {
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      padding: 15px;
+      width: 320px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .match-card:hover {
+      transform: scale(1.03);
+    }
+    .teams {
+      font-weight: bold;
+      color: #333;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .score {
+      color: #0275d8;
+      font-size: 1em;
+      margin-bottom: 5px;
+    }
+    .status {
+      color: #5cb85c;
+      font-size: 0.9em;
+    }
+    footer {
+      text-align: center;
+      background: #222;
+      color: #ccc;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
+  <header>🏏 Sports Hist India - Live Cricket Score</header>
+  <div id="liveMatches">Loading live matches...</div>
 
-<header>
-  <h1>Sports hist india</h1>
-</header>
+  <footer>© 2025 Sports Hist India | Powered by Cricbuzz API</footer>
 
-<nav>
-  <a href="#live" onclick="scrollToSection('live')">Live Matches</a>
-  <a href="#upcoming" onclick="scrollToSection('upcoming')">Upcoming</a>
-  <a href="#points" onclick="scrollToSection('points')">Points Table</a>
-  <a class="btn" href="#" onclick="manualRefresh()">Refresh Now</a>
-</nav>
+  <script>
+    const apiKey = "YOUR_RAPIDAPI_KEY"; // Yahan apni actual RapidAPI key daalein
+    const matchId = "40381"; // Match ID yahan badlo (naye match ke liye)
+    const apiUrl = `https://cricbuzz-cricket.p.rapidapi.com/mcenter/v1/${matchId}/hscard`;
 
-<div class="container">
-  <div class="top-row">
-    <div class="search">
-      <input id="searchInput" placeholder="Search team or tournament (example: India, T20 World Cup)"/>
-    </div>
-    <div class="small">Auto-refresh every <strong id="refreshSec">30</strong>s • Data via RapidAPI Cricbuzz</div>
-  </div>
+    async function fetchLiveScore() {
+      try {
+        const response = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "cricbuzz-cricket.p.rapidapi.com",
+            "x-rapidapi-key": apiKey
+          }
+        });
+        const data = await response.json();
 
-  <div class="cols">
-    <main>
-      <h2 id="live">Live Matches</h2>
-      <div id="liveMatches">
-        <!-- live match cards injected here -->
-      </div>
-
-      <h2 id="upcoming" style="margin-top:18px">Upcoming Matches</h2>
-      <div id="upcomingMatches" class="upcoming-list">
-        <!-- upcoming injected -->
-      </div>
-
-      <h2 id="points" style="margin-top:18px">Points Table</h2>
-      <div id="pointsTables">
-        <!-- points tables injected -->
-      </div>
-    </main>
-
-    <aside>
-      <div class="card">
-        <h3>About</h3>
-        <div class="small">Sports hist india — Cricbuzz-style live overview. Use your RapidAPI key in script. If browser blocks calls (CORS), use a server proxy.</div>
-      </div>
-
-      <div class="card">
-        <h3>Quick Tips</h3>
-        <ul style="padding-left:18px;margin:0">
-          <li>Replace <code>apiKey</code> with your RapidAPI key (already set below)</li>
-          <li>Click a match card to view detailed scorecard</li>
-          <li>Manual refresh with the button</li>
-        </ul>
-      </div>
-    </aside>
-  </div>
-</div>
-
-<!-- small floating detail box -->
-<div id="detailBox">
-  <div class="card" id="detailContent"></div>
-</div>
-
-<footer>&copy; 2025 Sports hist india</footer>
-
-<script>
-/*
-  NOTE: This file already includes the RapidAPI key you provided earlier.
-  If you ever need to change it, replace the value of apiKey below.
-*/
-const apiKey = '6233196ddcmsh94abd6c68e40237p107614jsn4e0e6d3e14c7'; // <-- your RapidAPI key (from your message)
-const host = 'cricbuzz-cricket.p.rapidapi.com';
-
-// configuration
-let autoRefreshSeconds = 30;
-let autoTimer = null;
-
-function scrollToSection(id){
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function manualRefresh(){
-  loadAll();
-  showTempMessage('Refreshing...');
-}
-
-function showTempMessage(msg, ms=1400){
-  const old = document.getElementById('__tmpmsg');
-  if(old) old.remove();
-  const d = document.createElement('div');
-  d.id='__tmpmsg';
-  d.textContent = msg;
-  Object.assign(d.style,{position:'fixed',left:'50%',transform:'translateX(-50%)',bottom:'18px',background:'#222',color:'#fff',padding:'8px 12px',borderRadius:'8px',zIndex:9999});
-  document.body.appendChild(d);
-  setTimeout(()=>d.remove(), ms);
-}
-
-async function loadAll(){
-  stopAuto();
-  try{
-    await loadMatches();
-    await loadUpcoming();
-    await loadPoints();
-  } catch(e){
-    console.error('Load error', e);
-    showTempMessage('Error loading data (see console).');
-  } finally {
-    startAuto();
-  }
-}
-
-async function apiGet(path){
-  const url = `https://${host}${path}`;
-  const res = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'x-rapidapi-host': host,
-      'x-rapidapi-key': apiKey
-    }
-  });
-  if(!res.ok){
-    const text = await res.text();
-    throw new Error('API error: ' + res.status + ' ' + text);
-  }
-  return res.json();
-}
-
-/* --------- Load live matches --------- */
-async function loadMatches(){
-  const liveContainer = document.getElementById('liveMatches');
-  liveContainer.innerHTML = '<div class="small">Loading live matches...</div>';
-
-  let data = null;
-  const tryPaths = ['/matches/v1/recent', '/mcenter/v1/recent', '/matches/v1/live']; 
-  for(const p of tryPaths){
-    try{
-      data = await apiGet(p);
-      if(data) { console.log('got data from', p); break; }
-    } catch(err){
-      console.warn('path failed', p, err.message);
-    }
-  }
-  if(!data){
-    liveContainer.innerHTML = '<div class="small">Unable to fetch live matches. Check API key or CORS (see console).</div>';
-    return;
-  }
-
-  let matches = data.matches || data.data || data || [];
-  if(!Array.isArray(matches)){
-    for(const k in data){
-      if(Array.isArray(data[k])) { matches = data[k]; break; }
-    }
-  }
-  if(!matches || matches.length === 0){
-    liveContainer.innerHTML = '<div class="small">No live matches at the moment.</div>';
-    return;
-  }
-
-  const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
-
-  liveContainer.innerHTML = '';
-  matches.forEach(m=>{
-    const id = m.id || m.matchId || m.match_id || m.mid || m.idMatch || m.matchIdStr || (m.match && m.match.id) || '';
-    let t1 = (m.team1 && (m.team1.name || m.team1.sName || m.team1.shortName)) || m.t1 || (m.teamA && m.teamA.name) || '';
-    let t2 = (m.team2 && (m.team2.name || m.team2.sName || m.team2.shortName)) || m.t2 || (m.teamB && m.teamB.name) || '';
-
-    if(!t1 && !t2){
-      if(m.title){ const parts = m.title.split(' vs '); t1 = parts[0]||''; t2 = parts[1]||''; }
-    }
-
-    const score = m.score || m.scoreString || m.statusText || m.matchScore || '';
-    const status = m.status || m.matchStatus || m.statusMessage || (m.live && 'Live') || '';
-
-    const combined = (t1 + ' ' + t2 + ' ' + (m.series || '')).toLowerCase();
-    if(q && !combined.includes(q)) return;
-
-    const card = document.createElement('div');
-    card.className = 'match-card';
-    card.dataset.matchId = id || '';
-    card.innerHTML = `
-      <div class="teams"><span>${t1 || 'Team A'}</span><span>${t2 || 'Team B'}</span></div>
-      <div class="meta"><span class="small">${m.series || m.seriesName || ''}</span><span class="small">${m.matchFormat || m.format || ''}</span></div>
-      <div class="scoreline">${score || (m.t1score || '')}</div>
-      <div class="status">${status || ''}</div>
-    `;
-    card.addEventListener('click', ()=> onMatchClick(card.dataset.matchId, m));
-    liveContainer.appendChild(card);
-  });
-}
-
-/* --------- on match click => fetch hscard (scorecard) --------- */
-async function onMatchClick(matchId, matchObj){
-  if(!matchId){
-    console.warn('No matchId available, showing raw object');
-    showDetail(JSON.stringify(matchObj, null, 2));
-    return;
-  }
-
-  showDetail('Loading details...');
-
-  try{
-    const detail = await apiGet(`/mcenter/v1/${matchId}/hscard`);
-    let html = `<h3>Match Detail</h3>`;
-    html += `<div class="small">Match ID: ${matchId}</div><hr/>`;
-
-    if(detail && typeof detail === 'object'){
-      if(detail.innings || detail.batting || detail.bat || detail.teamScores){
-        html += `<div><strong>Score Summary:</strong></div>`;
-        html += `<pre style="white-space:pre-wrap; font-size:13px;">${JSON.stringify(detail, null, 2)}</pre>`;
-      } else {
-        html += `<pre style="white-space:pre-wrap; font-size:13px;">${JSON.stringify(detail, null, 2)}</pre>`;
+        let html = `
+          <div class="match-card">
+            <div class="teams">${data.matchHeader.team1.name} vs ${data.matchHeader.team2.name}</div>
+            <div class="score">${data.matchHeader.status}</div>
+            <div class="status">Format: ${data.matchHeader.matchFormat}</div>
+          </div>
+        `;
+        document.getElementById("liveMatches").innerHTML = html;
+      } catch (err) {
+        document.getElementById("liveMatches").innerHTML = "⚠️ Error loading live score";
+        console.error(err);
       }
-    } else {
-      html += `<pre>${JSON.stringify(detail, null, 2)}</pre>`;
     }
-    showDetail(html);
-  } catch(err){
-    console.error('Detail fetch error', err);
-    showDetail('Unable to load details. See console for error.');
-  }
-}
 
-function showDetail(content){
-  const box = document.getElementById('detailBox');
-  const cont = document.getElementById('detailContent');
-  if(typeof content === 'string'){
-    cont.innerHTML = content;
-  } else {
-    cont.innerHTML = '<pre>' + JSON.stringify(content, null, 2) + '</pre>';
-  }
-  box.style.display = 'block';
-  clearTimeout(box._hideTimer);
-  box._hideTimer = setTimeout(()=>box.style.display='none', 35000);
-}
-
-/* --------- Upcoming & Points (simple placeholder using same data) --------- */
-async function loadUpcoming(){
-  const up = document.getElementById('upcomingMatches');
-  up.innerHTML = '<div class="small">Loading upcoming...</div>';
-  try{
-    let data=null;
-    try{ data = await apiGet('/matches/v1/upcoming'); } catch(e){ console.warn('upcoming endpoint failed', e.message); }
-    if(!data){
-      up.innerHTML = '<div class="small">No upcoming data (endpoint not available or none).</div>';
-      return;
-    }
-    let list = data.matches || data || [];
-    if(!Array.isArray(list)){
-      for(const k in data) if(Array.isArray(data[k])) { list = data[k]; break; }
-    }
-    up.innerHTML = '';
-    list.slice(0,6).forEach(m=>{
-      const match = (m.team1 && m.team1.name ? m.team1.name:'Team A') + ' vs ' + (m.team2 && m.team2.name ? m.team2.name:'Team B');
-      const date = m.date || m.startDate || m.matchDate || m.startTime || '';
-      const div = document.createElement('div');
-      div.className = 'upcoming-card';
-      div.innerHTML = `${match} <br/><span class="small">${date}</span>`;
-      up.appendChild(div);
-    });
-  }catch(e){
-    up.innerHTML = '<div class="small">Error loading upcoming (see console)</div>';
-  }
-}
-
-async function loadPoints(){
-  const pts = document.getElementById('pointsTables');
-  pts.innerHTML = '<div class="small">Loading points tables (if available)...</div>';
-  setTimeout(()=> {
-    pts.innerHTML = `<div class="card"><table><tr><th>Team</th><th>Mat</th><th>W</th><th>L</th><th>Pts</th></tr>
-      <tr><td>India</td><td>3</td><td>2</td><td>1</td><td>4</td></tr>
-      <tr><td>Australia</td><td>3</td><td>2</td><td>1</td><td>4</td></tr>
-    </table></div>`;
-  }, 600);
-}
-
-/* --------- Auto refresh helpers --------- */
-function startAuto(){
-  const secEl = document.getElementById('refreshSec');
-  secEl.textContent = autoRefreshSeconds;
-  stopAuto();
-  autoTimer = setInterval(()=> {
-    loadAll();
-  }, autoRefreshSeconds*1000);
-}
-function stopAuto(){ if(autoTimer) clearInterval(autoTimer); autoTimer = null; }
-
-let searchTimer = null;
-document.getElementById('searchInput').addEventListener('input', ()=>{
-  if(searchTimer) clearTimeout(searchTimer);
-  searchTimer = setTimeout(()=> loadMatches(), 450);
-});
-
-// initial load
-loadAll();
-startAuto();
-
-</script>
+    fetchLiveScore(); // Pehli baar load kare
+    setInterval(fetchLiveScore, 30000); // Har 30 second me refresh kare
+  </script>
 </body>
 </html>

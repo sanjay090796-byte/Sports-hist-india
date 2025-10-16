@@ -97,4 +97,228 @@
   </div>
 
 </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Overview - Cricbuzz Style</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    /* Header / Navbar */
+    .header {
+      background-color: #ff6f00;
+      color: white;
+      padding: 15px 20px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      background-color: #333;
+    }
+
+    .navbar a {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      background-color: #555;
+    }
+
+    /* Section Titles */
+    h2 {
+      text-align: center;
+      margin: 20px 0 10px 0;
+      color: #333;
+    }
+
+    /* Match Cards */
+    .match-card {
+      background-color: white;
+      margin: 10px auto;
+      padding: 15px;
+      border-radius: 8px;
+      max-width: 600px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .score {
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .status {
+      text-align: center;
+      font-size: 14px;
+      color: green;
+    }
+
+    /* Upcoming Matches */
+    .upcoming-card {
+      background-color: #fff7e6;
+      margin: 10px auto;
+      padding: 12px;
+      border-radius: 8px;
+      max-width: 600px;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* Points Table */
+    table {
+      border-collapse: collapse;
+      margin: 10px auto 30px auto;
+      max-width: 600px;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #333;
+      color: white;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 12px;
+      background-color: #333;
+      color: #fff;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    Cricket Live Overview
+  </div>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="#">Live Matches</a>
+    <a href="#">Upcoming Matches</a>
+    <a href="#">Points Table</a>
+  </div>
+
+  <!-- Live Matches Section -->
+  <h2>Live Matches</h2>
+
+  <div class="match-card">
+    <div class="teams">
+      <span>India 🇮🇳</span>
+      <span>Australia 🇦🇺</span>
+    </div>
+    <div class="score">
+      India: 250/3 (45.2 overs) <br>
+      Australia: 245/5 (50 overs)
+    </div>
+    <div class="status">
+      India needs 6 runs in 12 balls to win
+    </div>
+  </div>
+
+  <div class="match-card">
+    <div class="teams">
+      <span>England 🏴</span>
+      <span>New Zealand 🇳🇿</span>
+    </div>
+    <div class="score">
+      England: 320/8 (50 overs) <br>
+      New Zealand: 310/9 (50 overs)
+    </div>
+    <div class="status">
+      England won by 10 runs
+    </div>
+  </div>
+
+  <!-- Upcoming Matches Section -->
+  <h2>Upcoming Matches</h2>
+
+  <div class="upcoming-card">
+    India 🇮🇳 vs England 🏴 <br>
+    18 Oct 2025 | 3:00 PM IST
+  </div>
+
+  <div class="upcoming-card">
+    Australia 🇦🇺 vs New Zealand 🇳🇿 <br>
+    19 Oct 2025 | 7:00 PM IST
+  </div>
+
+  <!-- Points Table Section -->
+  <h2>Points Table</h2>
+  <table>
+    <tr>
+      <th>Team</th>
+      <th>Matches</th>
+      <th>Won</th>
+      <th>Lost</th>
+      <th>Points</th>
+    </tr>
+    <tr>
+      <td>India 🇮🇳</td>
+      <td>5</td>
+      <td>4</td>
+      <td>1</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>Australia 🇦🇺</td>
+      <td>5</td>
+      <td>3</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>England 🏴</td>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>New Zealand 🇳🇿</td>
+      <td>5</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+    </tr>
+  </table>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 Cricket Overview
+  </div>
+
+</body>
 </html>

@@ -1,111 +1,100 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports History of India</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #f0f8ff, #ffffff);
-            color: #333;
-        }
-        header {
-            background-color: #1e90ff;
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        nav {
-            background-color: #333;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 16px 25px;
-            display: inline-block;
-            transition: 0.3s;
-        }
-        nav a:hover {
-            background-color: #575757;
-            border-radius: 5px;
-        }
-        main {
-            padding: 30px;
-        }
-        section {
-            margin-bottom: 50px;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        h2 {
-            color: #1e90ff;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        @media (max-width: 600px) {
-            nav a {
-                display: block;
-                margin: 5px 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Overview</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #333;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .match-card {
+      background-color: white;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 8px;
+      max-width: 600px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .score {
+      text-align: center;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .status {
+      text-align: center;
+      font-size: 14px;
+      color: green;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      color: #555;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Sports History of India</h1>
-        <p>भारत के खेलों का गौरव और इतिहास</p>
-    </header>
 
-    <nav>
-        <a href="#cricket">क्रिकेट</a>
-        <a href="#hockey">हॉकी</a>
-        <a href="#wrestling">कुश्ती</a>
-    </nav>
+  <div class="header">
+    Cricket Live Overview
+  </div>
 
-    <main>
-        <section id="cricket">
-            <h2>क्रिकेट</h2>
-            <img src="images/cricket.jpg" alt="क्रिकेट">
-            <p>भारत में क्रिकेट का इतिहास बहुत पुराना है। यहाँ कई महान खिलाड़ी हुए हैं। भारतीय क्रिकेट टीम ने विश्व कप और टेस्ट मैचों में कई उपलब्धियां हासिल की हैं।</p>
-        </section>
+  <div class="match-card">
+    <div class="teams">
+      <span>India 🇮🇳</span>
+      <span>Australia 🇦🇺</span>
+    </div>
+    <div class="score">
+      India: 250/3 (45.2 overs) <br>
+      Australia: 245/5 (50 overs)
+    </div>
+    <div class="status">
+      India needs 6 runs in 12 balls to win
+    </div>
+  </div>
 
-        <section id="hockey">
-            <h2>हॉकी</h2>
-            <img src="images/hockey.jpg" alt="हॉकी">
-            <p>भारतीय हॉकी टीम ने कई ओलंपिक और अंतरराष्ट्रीय प्रतियोगिताओं में जीत हासिल की है। हॉकी भारत का राष्ट्रीय खेल भी माना जाता है।</p>
-        </section>
+  <div class="match-card">
+    <div class="teams">
+      <span>England 🏴</span>
+      <span>New Zealand 🇳🇿</span>
+    </div>
+    <div class="score">
+      England: 320/8 (50 overs) <br>
+      New Zealand: 310/9 (50 overs)
+    </div>
+    <div class="status">
+      England won by 10 runs
+    </div>
+  </div>
 
-        <section id="wrestling">
-            <h2>कुश्ती</h2>
-            <img src="images/wrestling.jpg" alt="कुश्ती">
-            <p>भारतीय कुश्ती का इतिहास प्राचीन काल से ही रहा है, जिसमें कई खिलाड़ी प्रसिद्ध हुए हैं। पहलवानी और अखाड़ा संस्कृति का हिस्सा रही है।</p>
-        </section>  
-    </main>
+  <div class="footer">
+    &copy; 2025 Cricket Overview
+  </div>
 
-    <footer>
-        © 2025 Sports History of India
-    </footer>
 </body>
 </html>

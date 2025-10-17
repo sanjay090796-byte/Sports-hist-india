@@ -3,113 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sports Hist India — Live Cricket Overview</title>
+<title>Sports Hist India</title>
 <link rel="manifest" href="manifest.json">
 <style>
-:root {
-  --primary: linear-gradient(90deg,#7b2ff7,#f107a3);
-  --accent:#ff66cc;
-  --bg:#f4f4f9;
-  --card:#fff;
-  --text:#1a1a1a;
-  --muted:#555;
-}
-*{box-sizing:border-box;}
-body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);}
-header{background:var(--primary);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;border-radius:0 0 12px 12px;}
-header h1{margin:0;font-size:20px;font-weight:700;flex:1;}
-.logo-badge{background:rgba(255,255,255,0.2);padding:6px 10px;border-radius:6px;font-weight:700;}
-header a{margin-left:auto;text-decoration:none;color:#fff;background:#ff0000;padding:6px 12px;border-radius:6px;font-weight:600;}
-nav.topnav{display:flex;gap:8px;padding:10px 16px;background:#fff;align-items:center;border-bottom:1px solid #ddd;flex-wrap:wrap;}
-nav.topnav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:600;}
-nav.topnav a.active,nav.topnav a:hover{background:var(--accent);color:#fff;}
-.container{max-width:1120px;margin:18px auto;padding:0 14px;}
-.layout{display:grid;grid-template-columns:1fr 360px;gap:16px;align-items:start;}
-@media(max-width:900px){.layout{grid-template-columns:1fr;}}
-#liveGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
-.card{background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(10,10,10,0.06);padding:12px;overflow:hidden;}
-.match-card{cursor:pointer;transition: transform .12s ease, box-shadow .12s ease;}
-.match-card:hover{transform:translateY(-6px);box-shadow:0 10px 22px rgba(0,0,0,0.08);}
-.teams{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:6px;}
-.series{color:var(--muted);font-size:13px;margin-bottom:8px;}
-.score{text-align:center;font-weight:700;color:var(--accent);margin:6px 0;font-size:14px;}
-.status{text-align:center;color:var(--muted);font-size:13px;}
-.news{text-align:left;color:#333;font-size:13px;margin:6px 0;}
-.player{font-size:13px;color:#444;margin:4px 0;}
-.media img{max-width:100%;border-radius:8px;margin-top:6px;}
-.media iframe{width:100%;height:200px;margin-top:6px;border-radius:8px;}
-aside .card{margin-bottom:12px;}
-footer{text-align:center;padding:12px;color:#666;font-size:13px;margin-top:18px;}
-.btn{background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700;cursor:pointer;border:none;}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f4f9;}
+header{background:#7b2ff7;color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+header h1{margin:0;font-size:22px;}
+nav{background:#fff;padding:8px 16px;display:flex;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+nav a{text-decoration:none;color:#555;font-weight:600;padding:6px 10px;border-radius:6px;}
+nav a:hover, nav a.active{background:#f107a3;color:#fff;}
+.marquee{background:#ff0033;color:#fff;padding:6px 12px;overflow:hidden;white-space:nowrap;}
+.marquee span{display:inline-block;padding-right:50px;animation:marquee 15s linear infinite;}
+@keyframes marquee{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+.container{max-width:1120px;margin:16px auto;padding:0 12px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+.card{background:#fff;border-radius:10px;box-shadow:0 6px 12px rgba(0,0,0,0.06);padding:12px;overflow:hidden;}
+.card img{max-width:100%;border-radius:8px;margin-top:6px;}
+.card .teams{display:flex;justify-content:space-between;font-weight:700;}
+.card .score{color:#f107a3;font-weight:700;text-align:center;margin:6px 0;}
+footer{text-align:center;color:#666;padding:12px;margin-top:18px;}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-badge">SHI</div>
   <h1>Sports Hist India</h1>
-  <a href="https://www.youtube.com/live/mGhRoCGjlEY?si=SdQh8hVhvIW3koqM" target="_blank">🎥 Live on YouTube</a>
+  <a href="https://www.youtube.com/live/mGhRoCGjlEY?si=SdQh8hVhvIW3koqM" target="_blank" style="background:#ff0000;padding:6px 12px;border-radius:6px;color:#fff;">🎥 Live</a>
 </header>
 
-<nav class="topnav">
-  <a href="#live" class="active" onclick="scrollTo('live')">Live</a>
-  <a href="#upcoming" onclick="scrollTo('upcoming')">Upcoming</a>
-  <a href="#series" onclick="scrollTo('series')">Series</a>
-  <a href="#points" onclick="scrollTo('points')">Points Table</a>
+<nav>
+  <a href="#live" class="active">Live</a>
+  <a href="#upcoming">Upcoming</a>
+  <a href="#series">Series</a>
+  <a href="#points">Points</a>
+  <a href="#news">News</a>
 </nav>
 
+<div class="marquee"><span>Breaking: Player X scored 50 runs! | Match India A vs India B live | Check latest scores & news...</span></div>
+
 <div class="container">
-  <div class="layout">
-    <main>
-      <section id="live">
-        <h2>Live Matches</h2>
-        <div id="liveGrid"></div>
-      </section>
+  <section id="live">
+    <h2>Live Matches</h2>
+    <div id="liveGrid" class="grid"></div>
+  </section>
 
-      <section style="margin-top:20px;">
-        <h2>🎬 Live Stream / Highlights</h2>
-        <iframe width="100%" height="315"
-          src="https://www.youtube.com/embed/mGhRoCGjlEY"
-          title="Live YouTube Stream"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </section>
+  <section id="upcoming" style="margin-top:20px;">
+    <h2>Upcoming Matches</h2>
+    <div id="upcomingList" class="grid"></div>
+  </section>
 
-      <section id="upcoming" style="margin-top:18px;">
-        <h2>Upcoming Matches</h2>
-        <div id="upcomingList"></div>
-      </section>
+  <section id="series" style="margin-top:20px;">
+    <h2>Series / Tournaments</h2>
+    <div id="seriesList" class="grid"></div>
+  </section>
 
-      <section id="series" style="margin-top:18px;">
-        <h2>Series / Tournaments</h2>
-        <div id="seriesList"></div>
-      </section>
+  <section id="points" style="margin-top:20px;">
+    <h2>Points Table</h2>
+    <div id="pointsContainer"></div>
+  </section>
 
-      <section id="points" style="margin-top:18px;">
-        <h2>Points Table</h2>
-        <div id="pointsContainer"></div>
-      </section>
-    </main>
-
-    <aside>
-      <div class="card">
-        <h3>About</h3>
-        <p>Sports Hist India — Cricbuzz-style live overview. Update matches, news, media & player performance via Google Sheet.</p>
-      </div>
-    </aside>
-  </div>
+  <section id="news" style="margin-top:20px;">
+    <h2>Latest News</h2>
+    <div id="newsContainer" class="grid"></div>
+  </section>
 </div>
 
 <footer>© 2025 Sports Hist India</footer>
 
 <script>
 if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
-function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'}); }
 
-// Google Sheet integration
-const SHEET_ID = 'YOUR_SHEET_ID_HERE'; // Replace with your Google Sheet ID
+const SHEET_ID = '1mpaSr5BNjFRX62tO5-MBWw4nfhUaoz1qRv3R8toPfrE'; // Replace with your Google Sheet ID
 const SHEET_NAME = 'Matches';
 
 async function fetchMatches() {
@@ -135,26 +99,31 @@ async function fetchMatches() {
     loadUpcoming(matches);
     loadSeries(matches);
     loadPoints();
+    loadNews(matches);
   } catch(e){ console.error("Failed to fetch sheet data:", e); }
 }
 
 function renderLive(matches){
   const grid = document.getElementById('liveGrid'); grid.innerHTML='';
   matches.forEach(m=>{
-    const div = document.createElement('div'); div.className='card match-card';
+    const div = document.createElement('div'); div.className='card';
     div.innerHTML = `<div class="teams"><span>${m.Team1}</span><span>${m.Team2}</span></div>
-      <div class="series">Overs: ${m.Overs} • ${m.Status}</div>
-      <div class="score">${m.Score}</div>
-      <div class="news">${m.News}</div>
-      ${m.PlayerPerformance?`<div class="player"><strong>Performance:</strong> ${m.PlayerPerformance}</div>`:''}
-      ${m.ImageURL?`<div class="media"><img src="${m.ImageURL}" alt="Player Image"></div>`:''}
-      ${m.MediaURL?`<div class="media"><iframe src="${m.MediaURL}" frameborder="0" allowfullscreen></iframe></div>`:''}`;
+      <div class="score">${m.Score} | Overs: ${m.Overs} | ${m.Status}</div>
+      ${m.PlayerPerformance?`<div><strong>Performance:</strong> ${m.PlayerPerformance}</div>`:''}
+      ${m.ImageURL?`<img src="${m.ImageURL}" alt="Player Image">`:''}
+      ${m.MediaURL?`<iframe src="${m.MediaURL}" frameborder="0" allowfullscreen style="width:100%;height:200px;margin-top:6px;"></iframe>`:''}`;
     grid.appendChild(div);
   });
 }
 
-function loadUpcoming(matches){ const el=document.getElementById('upcomingList'); el.innerHTML=''; matches.forEach(m=>{ const d=document.createElement('div'); d.textContent=m.Team1+' vs '+m.Team2; el.appendChild(d); }); }
-function loadSeries(matches){ const el=document.getElementById('seriesList'); el.innerHTML=''; const map={}; matches.forEach(m=>{ const s='District Cup'; map[s]=(map[s]||0)+1; }); for(const s in map){ const d=document.createElement('div'); d.textContent=s+' ('+map[s]+' matches)'; el.appendChild(d); } }
+function loadUpcoming(matches){ const el=document.getElementById('upcomingList'); el.innerHTML=''; matches.forEach(m=>{ const d=document.createElement('div'); d.className='card'; d.textContent=m.Team1+' vs '+m.Team2; el.appendChild(d); }); }
+function loadSeries(matches){ const el=document.getElementById('seriesList'); el.innerHTML=''; const map={}; matches.forEach(m=>{ const s='District Cup'; map[s]=(map[s]||0)+1; }); for(const s in map){ const d=document.createElement('div'); d.className='card'; d.textContent=s+' ('+map[s]+' matches)'; el.appendChild(d); } }
 function loadPoints(){ const el=document.getElementById('pointsContainer'); el.innerHTML='<table border="1" width="100%"><tr><th>Team</th><th>Mat</th><th>W</th><th>L</th><th>Pts</th></tr><tr><td>India A</td><td>2</td><td>2</td><td>0</td><td>4</td></tr><tr><td>India B</td><td>2</td><td>1</td><td>1</td><td>2</td></tr></table>'; }
+function loadNews(matches){ const el=document.getElementById('newsContainer'); el.innerHTML=''; matches.forEach(m=>{ if(m.News){ const d=document.createElement('div'); d.className='card'; d.textContent=m.News; el.appendChild(d); } }); }
 
-fetch
+fetchMatches();
+setInterval(fetchMatches,60000); // Auto refresh every 60 sec
+</script>
+
+</body>
+</html>

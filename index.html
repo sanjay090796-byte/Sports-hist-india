@@ -1,90 +1,63 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sports Hist India — Live Cricket Overview</title>
+<link rel="manifest" href="manifest.json">
 <style>
-  :root{
-    --primary:#0b6b3a;
-    --accent:#08a652;
-    --dark:#1a1a1a;
-    --muted:#6b6b6b;
-    --card:#ffffff;
-    --bg:#f4f6f4;
+  :root {
+    --primary: linear-gradient(90deg, #7b2ff7, #f107a3);
+    --accent: #ff66cc;
+    --bg: #f4f4f9;
+    --card: #fff;
+    --text: #1a1a1a;
+    --muted: #555;
   }
-  *{box-sizing:border-box;}
-  body{margin:0;font-family:Arial, sans-serif;background:var(--bg);color:var(--dark);}
-  header{background:var(--primary);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;}
-  header h1{margin:0;font-size:18px;font-weight:700;}
-  .logo-badge{background:rgba(255,255,255,0.12);padding:6px 10px;border-radius:6px;font-weight:700;}
-
-  nav.topnav{display:flex;gap:8px;padding:10px 16px;background:#fff;align-items:center;border-bottom:1px solid #e6efe6;flex-wrap:wrap;}
-  nav.topnav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:600;}
-  nav.topnav a.active, nav.topnav a:hover{background:var(--primary);color:#fff;}
-
-  .container{max-width:1120px;margin:18px auto;padding:0 14px;}
-  .topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap;}
-  .search input{width:320px;max-width:60vw;padding:10px 12px;border-radius:8px;border:1px solid #ddd;}
-  .controls{display:flex;gap:8px;align-items:center;}
-
-  .layout{display:grid;grid-template-columns:1fr 360px;gap:16px;align-items:start;}
-  @media (max-width:900px){ .layout{grid-template-columns:1fr;} .search input{width:100%;} }
-
-  #liveGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
-  .card{background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(10,10,10,0.06);padding:12px;overflow:hidden;}
-  .match-card{cursor:pointer;transition:transform .12s ease, box-shadow .12s ease;}
-  .match-card:hover{transform:translateY(-6px);box-shadow:0 10px 22px rgba(0,0,0,0.08);}
-  .teams{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:6px;}
-  .series{color:var(--muted);font-size:13px;margin-bottom:8px;}
-  .score{text-align:center;font-weight:700;color:var(--primary);margin:6px 0;font-size:14px;}
-  .status{text-align:center;color:var(--muted);font-size:13px;}
-  .news{text-align:left;color:#333;font-size:13px;margin:6px 0;}
-  .media img{max-width:100%;border-radius:8px;margin-top:6px;}
-  .media iframe{width:100%;height:200px;margin-top:6px;border-radius:8px;}
-
-  aside .card{margin-bottom:12px;}
-  .upcoming-list, .points-list{display:flex;flex-direction:column;gap:8px;}
-  .upcoming-item{background:#fcfff8;padding:8px;border-radius:8px;border:1px solid #f0f7f0;font-size:14px;}
-  .points-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .points-table th, .points-table td{padding:8px;border:1px solid #eee;text-align:center;}
-  .points-table th{background:#f8fff8;}
-
-  #detailPanel{position:fixed;right:18px;top:80px;width:380px;max-width:94%;z-index:999;display:none;}
-  #detailPanel .card{max-height:76vh;overflow:auto;}
-
-  footer{text-align:center;padding:12px;color:#666;font-size:13px;margin-top:18px;}
-  .btn{background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700;cursor:pointer;border:none;}
-  .muted{color:var(--muted);font-size:13px;}
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Arial, sans-serif; background: var(--bg); color: var(--text); }
+  header { background: var(--primary); color:#fff; padding:14px 16px; display:flex; align-items:center; gap:12px; border-radius:0 0 12px 12px; }
+  header h1 { margin:0; font-size:20px; font-weight:700; flex:1; }
+  .logo-badge { background:rgba(255,255,255,0.2); padding:6px 10px; border-radius:6px; font-weight:700; }
+  header a { margin-left:auto; text-decoration:none; color:#fff; background:#ff0000; padding:6px 12px; border-radius:6px; font-weight:600; }
+  nav.topnav { display:flex; gap:8px; padding:10px 16px; background:#fff; align-items:center; border-bottom:1px solid #ddd; flex-wrap:wrap; }
+  nav.topnav a { color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:6px; font-weight:600; }
+  nav.topnav a.active, nav.topnav a:hover { background:var(--accent); color:#fff; }
+  .container { max-width:1120px; margin:18px auto; padding:0 14px; }
+  .layout { display:grid; grid-template-columns:1fr 360px; gap:16px; align-items:start; }
+  @media(max-width:900px){ .layout{grid-template-columns:1fr;} }
+  #liveGrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+  .card { background:var(--card); border-radius:10px; box-shadow:0 6px 18px rgba(10,10,10,0.06); padding:12px; overflow:hidden; }
+  .match-card { cursor:pointer; transition: transform .12s ease, box-shadow .12s ease; }
+  .match-card:hover { transform:translateY(-6px); box-shadow:0 10px 22px rgba(0,0,0,0.08); }
+  .teams { display:flex; justify-content:space-between; font-weight:700; font-size:15px; margin-bottom:6px; }
+  .series { color:var(--muted); font-size:13px; margin-bottom:8px; }
+  .score { text-align:center; font-weight:700; color:var(--accent); margin:6px 0; font-size:14px; }
+  .status { text-align:center; color:var(--muted); font-size:13px; }
+  .news { text-align:left; color:#333; font-size:13px; margin:6px 0; }
+  .media img { max-width:100%; border-radius:8px; margin-top:6px; }
+  .media iframe { width:100%; height:200px; margin-top:6px; border-radius:8px; }
+  aside .card { margin-bottom:12px; }
+  footer { text-align:center; padding:12px; color:#666; font-size:13px; margin-top:18px; }
+  .btn { background:var(--accent); color:#fff; padding:8px 10px; border-radius:8px; text-decoration:none; font-weight:700; cursor:pointer; border:none; }
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo-badge">SHI</div>
   <h1>Sports Hist India</h1>
+  <a href="https://www.youtube.com/live/mGhRoCGjlEY?si=SdQh8hVhvIW3koqM" target="_blank">🎥 Live on YouTube</a>
 </header>
-  <a href="https://https://www.youtube.com/live/mGhRoCGjlEY?si=SdQh8hVhvIW3koqM" target="_blank" 
-style="float:right; text-decoration:none; color:white; background:red; padding:6px 12px; border-radius:6px; margin-top:10px;">
-  🎥 Watch on YouTube
-</a>
 
 <nav class="topnav">
   <a href="#live" class="active" onclick="scrollTo('live')">Live</a>
   <a href="#upcoming" onclick="scrollTo('upcoming')">Upcoming</a>
   <a href="#series" onclick="scrollTo('series')">Series</a>
   <a href="#points" onclick="scrollTo('points')">Points Table</a>
-  <div style="margin-left:auto;" class="muted">Auto-refresh: <strong id="autoSec">30</strong>s</div>
 </nav>
 
 <div class="container">
-  <div class="topbar">
-    <div class="search"><input id="q" placeholder="Search team, series, match news..."/></div>
-    <div class="controls">
-      <button class="btn" onclick="manualRefresh()">Refresh</button>
-      <div class="muted" id="lastUpdated">Last updated: —</div>
-    </div>
-  </div>
-
   <div class="layout">
     <main>
       <section id="live">
@@ -92,9 +65,21 @@ style="float:right; text-decoration:none; color:white; background:red; padding:6
         <div id="liveGrid"></div>
       </section>
 
+      <!-- YouTube Video Section -->
+      <section style="margin-top:20px;">
+        <h2>🎬 Live Stream / Highlights</h2>
+        <iframe width="100%" height="315"
+          src="https://www.youtube.com/embed/mGhRoCGjlEY"
+          title="Live YouTube Stream"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </section>
+
       <section id="upcoming" style="margin-top:18px;">
         <h2>Upcoming Matches</h2>
-        <div id="upcomingList" class="upcoming-list"></div>
+        <div id="upcomingList"></div>
       </section>
 
       <section id="series" style="margin-top:18px;">
@@ -111,65 +96,43 @@ style="float:right; text-decoration:none; color:white; background:red; padding:6
     <aside>
       <div class="card">
         <h3>About</h3>
-        <div class="muted">Sports Hist India — Cricbuzz-style overview. Update matches, news & media via JSON.</div>
-      </div>
-
-      <div class="card">
-        <h3>Quick Controls</h3>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="btn" onclick="setAuto(15)">15s</button>
-          <button class="btn" onclick="setAuto(30)">30s</button>
-          <button class="btn" onclick="setAuto(60)">60s</button>
-        </div>
-        <div style="margin-top:8px;" class="muted">Click a match card to open detailed news & media.</div>
+        <p>Sports Hist India — Cricbuzz-style overview. Update matches, news & media via JSON.</p>
       </div>
     </aside>
   </div>
 </div>
 
-<!-- detail panel -->
-<div id="detailPanel">
-  <div class="card" id="detailContent"></div>
-</div>
-
 <footer>© 2025 Sports Hist India</footer>
 
 <script>
-/* ---------------- SAMPLE DATA ---------------- */
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
+
 let matchesData = [
-  {
-    "MatchID":1,
-    "Team1":"India A",
-    "Team2":"India B",
-    "Score":"45/1",
-    "Overs":"8.3",
-    "Status":"Live",
-    "News":"Team A started well. Player X scored a quick 25 runs.",
-    "MediaURL":"https://www.youtube.com/embed/dQw4w9WgXcQ"
-  },
-  {
-    "MatchID":2,
-    "Team1":"India C",
-    "Team2":"India D",
-    "Score":"120/4",
-    "Overs":"20",
-    "Status":"Finished",
-    "News":"Player Y scored 60 runs and took 2 wickets.",
-    "MediaURL":"https://via.placeholder.com/320x180.png"
-  }
+  {"MatchID":1,"Team1":"India A","Team2":"India B","Score":"45/1","Overs":"8.3","Status":"Live","News":"Team A started well. Player X scored a quick 25 runs.","MediaURL":"https://www.youtube.com/embed/mGhRoCGjlEY"},
+  {"MatchID":2,"Team1":"India C","Team2":"India D","Score":"120/4","Overs":"20","Status":"Finished","News":"Player Y scored 60 runs and took 2 wickets.","MediaURL":"https://via.placeholder.com/320x180.png"}
 ];
 
-/* ---------------- FUNCTIONS ---------------- */
 function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'}); }
-function setAuto(s){ autoSeconds = s; document.getElementById('autoSec').textContent = s; restartAuto(); }
-function manualRefresh(){ loadAll(); showTemp('Refreshing...'); }
-function showTemp(msg, ms=1300){ const t=document.createElement('div'); t.textContent=msg; Object.assign(t.style,{position:'fixed',left:'50%',transform:'translateX(-50%)',bottom:'20px',background:'#111',color:'#fff',padding:'8px 12px',borderRadius:'8px',zIndex:9999}); document.body.appendChild(t); setTimeout(()=>t.remove(), ms); }
 
-function loadLive(){
-  const grid = document.getElementById('liveGrid'); grid.innerHTML="";
+function renderLive(){
+  const grid = document.getElementById('liveGrid'); grid.innerHTML='';
   matchesData.forEach(m=>{
-    const card = document.createElement('div');
-    card.className='card match-card';
-    card.dataset.id=m.MatchID;
-    card.innerHTML=`<div class="teams"><span>${m.Team1}</span> vs <span>${m.Team2}</span></div>
+    const div = document.createElement('div'); div.className='card match-card';
+    div.innerHTML = `<div class="teams"><span>${m.Team1}</span><span>${m.Team2}</span></div>
+      <div class="series">Overs: ${m.Overs} • ${m.Status}</div>
       <div class="score">${m.Score}</div>
+      <div class="news">${m.News}</div>`;
+    grid.appendChild(div);
+  });
+}
+
+function loadUpcoming(){ const el=document.getElementById('upcomingList'); el.innerHTML=''; matchesData.forEach(m=>{ const d=document.createElement('div'); d.textContent=m.Team1+' vs '+m.Team2; el.appendChild(d); }); }
+function loadSeries(){ const el=document.getElementById('seriesList'); el.innerHTML=''; const map={}; matchesData.forEach(m=>{ const s='District Cup'; map[s]=(map[s]||0)+1; }); for(const s in map){ const d=document.createElement('div'); d.textContent=s+' ('+map[s]+' matches)'; el.appendChild(d); } }
+function loadPoints(){ const el=document.getElementById('pointsContainer'); el.innerHTML='<table border="1" width="100%"><tr><th>Team</th><th>Mat</th><th>W</th><th>L</th><th>Pts</th></tr><tr><td>India A</td><td>2</td><td>2</td><td>0</td><td>4</td></tr><tr><td>India B</td><td>2</td><td>1</td><td>1</td><td>2</td></tr></table>'; }
+
+function loadAll(){ renderLive(); loadUpcoming(); loadSeries(); loadPoints(); }
+loadAll();
+</script>
+
+</body>
+</html>

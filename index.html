@@ -1,10 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sports Hist India</title>
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root{
+      --purple-1:#6a00f4;
+      --purple-2:#a45cff;
+      --bg-gradient:linear-gradient(135deg,var(--purple-1),var(--purple-2));
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:Arial,sans-serif;line-height:1.6;background:#111;color:#fff;}
+    a{text-decoration:none;color:inherit;}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px;}
+
+    /* Ticker */
+    .ticker{background:#2b0a65;overflow:hidden;white-space:nowrap;font-size:14px;padding:6px 0;}
+    .ticker-inner{display:inline-block;padding-left:100%;animation:ticker 25s linear infinite;}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+
+    /* Header */
+    header{display:flex;justify-content:space-between;align-items:center;padding:14px 0;background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:50;}
+    .logo{font-weight:700;font-size:20px;color:#fff;}
+    nav{display:flex;gap:14px;}
+    nav a{padding:8px 10px;border-radius:6px;}
+    nav a:hover{background:rgba(255,255,255,0.1);}
+    #navToggle{display:none;font-size:22px;background:transparent;border:none;color:#fff;}
+
+    /* Hero */
+    .hero{background:var(--bg-gradient) url('https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;padding:80px 18px;text-align:left;}
+    .hero h1{font-size:36px;margin-bottom:12px;}
+    .hero p{margin-bottom:18px;opacity:0.9;}
+    .btn{background:#fff;color:var(--purple-1);padding:10px 16px;border-radius:10px;font-weight:600;display:inline-block;margin-top:8px;}
+    .btn-outline{border:2px solid #fff;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;margin-top:8px;}
+
+    /* Cards */
+    .section{margin:40px 0;}
+    .section h2{margin-bottom:20px;}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+    .card{background:rgba(255,255,255,0.05);padding:14px;border-radius:12px;text-align:center;transition:transform 0.3s, box-shadow 0.3s;}
+    .card:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(255,255,255,0.2);}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;}
+    .card h3{margin-bottom:6px;}
+
+    /* Live Stream */
+    .live iframe{border-radius:12px;width:100%;height:500px;}
+
+    /* Callout */
+    .callout{background:var(--bg-gradient);text-align:center;padding:28px 18px;border-radius:12px;margin:40px 0;}
+    .callout h2{margin-bottom:10px;}
+    .callout p{margin-bottom:14px;}
+
+    /* Footer */
+    footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+    .footer-nav{display:flex;gap:10px;}
+    .footer-nav a{color:#bbb;}
+
+    /* Responsive */
+    @media(max-width:900px){
+      nav{display:none;flex-direction:column;}
+      #navToggle{display:block;}
+      .hero h1{font-size:28px;}
+    }
+  </style>
 </head>
 <body>
 
@@ -16,89 +75,81 @@
 </div>
 
 <!-- Header -->
-<header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html">Sports Hist India</a>
-    <button id="navToggle" class="nav-toggle">☰</button>
-    <nav class="nav" id="mainNav">
-      <a href="index.html">Home</a>
-      <a href="history.html">History</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
+<header class="container">
+  <a class="logo" href="#">Sports Hist India</a>
+  <button id="navToggle">☰</button>
+  <nav id="mainNav">
+    <a href="#">Home</a>
+    <a href="#">History</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact</a>
+  </nav>
 </header>
 
-<!-- Hero Banner -->
-<section class="hero">
-  <div class="hero-inner container">
-    <h1>Sports Hist India</h1>
-    <p>Celebrating the legacy of Indian sports with stories, images, and highlights.</p>
-    <a class="btn" href="history.html">Explore History</a>
-  </div>
+<!-- Hero -->
+<section class="hero container">
+  <h1>Sports Hist India</h1>
+  <p>Celebrating the legacy of Indian sports with stories, images, and highlights.</p>
+  <a class="btn" href="#">Explore History</a>
 </section>
 
-<!-- Latest Stories Section -->
-<section class="latest-stories container">
+<!-- Latest Stories -->
+<section class="section container">
   <h2>Latest Stories</h2>
   <div class="card-grid">
     <div class="card">
-      <img src="images/img1.jpg" alt="Story 1">
+      <img src="https://images.unsplash.com/photo-1541447274966-8cfa8f77edb1?auto=format&fit=crop&w=800&q=80" alt="Story 1">
       <h3>Historic Matches</h3>
       <p>Stories and scorecards of memorable matches.</p>
     </div>
     <div class="card">
-      <img src="images/img2.jpg" alt="Story 2">
+      <img src="https://images.unsplash.com/photo-1582496784448-1c92a9e4205b?auto=format&fit=crop&w=800&q=80" alt="Story 2">
       <h3>Players & Legends</h3>
       <p>Profiles and achievements of great sportspeople.</p>
     </div>
     <div class="card">
-      <img src="images/img3.jpg" alt="Story 3">
+      <img src="https://images.unsplash.com/photo-1576186728706-c8429b6a524f?auto=format&fit=crop&w=800&q=80" alt="Story 3">
       <h3>Photo Gallery</h3>
       <p>Photographs capturing moments of triumph.</p>
     </div>
   </div>
 </section>
 
-<!-- Trending Section -->
-<section class="trending container">
-  <h2>Trending</h2>
-  <div class="card-grid">
-    <div class="card">
-      <img src="images/img4.jpg" alt="Trending 1">
-      <h3>Match Highlights</h3>
-      <p>Highlights from recent matches across India.</p>
-    </div>
-    <div class="card">
-      <img src="images/img5.jpg" alt="Trending 2">
-      <h3>Upcoming Events</h3>
-      <p>Important tournaments and events to watch.</p>
-    </div>
-  </div>
+<!-- Live Streaming -->
+<section class="section container live">
+  <h2>Live Streaming</h2>
+  <iframe src="https://www.youtube.com/embed/lguA2ezcc9M?autoplay=0" frameborder="0" allowfullscreen></iframe>
 </section>
 
-<!-- Callout Section -->
-<section class="callout">
-  <div class="container">
-    <h2>Stay Updated</h2>
-    <p>Subscribe for the latest news, articles, and photos.</p>
-    <a class="btn-outline" href="contact.html">Contact Us</a>
-  </div>
+<!-- Callout -->
+<section class="callout container">
+  <h2>Stay Updated</h2>
+  <p>Subscribe for the latest news, articles, and photos.</p>
+  <a class="btn-outline" href="#">Contact Us</a>
 </section>
 
 <!-- Footer -->
-<footer class="site-footer">
-  <div class="container">
-    <p>© <span id="year"></span> Sports Hist India</p>
-    <nav class="footer-nav">
-      <a href="index.html">Home</a>
-      <a href="history.html">History</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
+<footer class="container">
+  <p>© <span id="year"></span> Sports Hist India</p>
+  <nav class="footer-nav">
+    <a href="#">Home</a>
+    <a href="#">History</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact</a>
+  </nav>
 </footer>
 
-<script src="js/script.js"></script>
+<script>
+  // Mobile nav toggle + current year
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  navToggle.addEventListener('click', () => {
+    if(mainNav.style.display === 'flex'){ mainNav.style.display = 'none'; }
+    else{ mainNav.style.display = 'flex'; }
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>

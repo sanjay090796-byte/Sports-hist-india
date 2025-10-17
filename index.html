@@ -1,73 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports Hist India</title>
-  <style>
-    :root{
-      --purple-1:#6a00f4;
-      --purple-2:#a45cff;
-      --bg-gradient:linear-gradient(135deg,var(--purple-1),var(--purple-2));
-    }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:Arial,sans-serif;line-height:1.6;background:#111;color:#fff;}
-    a{text-decoration:none;color:inherit;}
-    .container{max-width:1100px;margin:0 auto;padding:0 18px;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports Hist India</title>
+<style>
+:root{
+  --purple-1:#6a00f4;
+  --purple-2:#a45cff;
+  --bg-gradient:linear-gradient(135deg,var(--purple-1),var(--purple-2));
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,sans-serif;line-height:1.6;background:#111;color:#fff;}
+a{text-decoration:none;color:inherit;}
+.container{max-width:1100px;margin:0 auto;padding:0 18px;}
 
-    /* Ticker */
-    .ticker{background:#2b0a65;overflow:hidden;white-space:nowrap;font-size:14px;padding:6px 0;}
-    .ticker-inner{display:inline-block;padding-left:100%;animation:ticker 25s linear infinite;}
-    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+/* Ticker */
+.ticker{background:#2b0a65;overflow:hidden;white-space:nowrap;font-size:14px;padding:6px 0;}
+.ticker-inner{display:inline-block;padding-left:100%;animation:ticker 25s linear infinite;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
-    /* Header */
-    header{display:flex;justify-content:space-between;align-items:center;padding:14px 0;background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:50;}
-    .logo{font-weight:700;font-size:20px;color:#fff;}
-    nav{display:flex;gap:14px;}
-    nav a{padding:8px 10px;border-radius:6px;}
-    nav a:hover{background:rgba(255,255,255,0.1);}
-    #navToggle{display:none;font-size:22px;background:transparent;border:none;color:#fff;}
+/* Header */
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 0;background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:50;}
+.logo{font-weight:700;font-size:20px;color:#fff;}
+nav{display:flex;gap:14px;}
+nav a{padding:8px 10px;border-radius:6px;}
+nav a:hover{background:rgba(255,255,255,0.1);}
+#navToggle{display:none;font-size:22px;background:transparent;border:none;color:#fff;cursor:pointer;}
 
-    /* Hero */
-    .hero{background:var(--bg-gradient) url('https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;padding:80px 18px;text-align:left;}
-    .hero h1{font-size:36px;margin-bottom:12px;}
-    .hero p{margin-bottom:18px;opacity:0.9;}
-    .btn{background:#fff;color:var(--purple-1);padding:10px 16px;border-radius:10px;font-weight:600;display:inline-block;margin-top:8px;}
-    .btn-outline{border:2px solid #fff;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;margin-top:8px;}
+/* Hero Carousel */
+.hero{position:relative;overflow:hidden;border-radius:12px;margin:20px 0;}
+.hero-slide{display:none;position:relative;}
+.hero-slide img{width:100%;height:400px;object-fit:cover;border-radius:12px;}
+.hero-slide .overlay{position:absolute;bottom:20px;left:20px;color:#fff;background:rgba(0,0,0,0.5);padding:12px;border-radius:8px;max-width:70%;}
+.hero-slide.active{display:block;}
+.hero-buttons{text-align:center;margin-top:10px;}
+.hero-buttons span{cursor:pointer;display:inline-block;width:12px;height:12px;background:#fff;margin:0 4px;border-radius:50%;opacity:0.5;}
+.hero-buttons span.active{opacity:1;}
 
-    /* Cards */
-    .section{margin:40px 0;}
-    .section h2{margin-bottom:20px;}
-    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
-    .card{background:rgba(255,255,255,0.05);padding:14px;border-radius:12px;text-align:center;transition:transform 0.3s, box-shadow 0.3s;}
-    .card:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(255,255,255,0.2);}
-    .card img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;}
-    .card h3{margin-bottom:6px;}
+/* Sections */
+.section{margin:40px 0;}
+.section h2{margin-bottom:20px;}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.card{background:rgba(255,255,255,0.05);padding:14px;border-radius:12px;text-align:center;transition:transform 0.3s,box-shadow 0.3s;}
+.card:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(255,255,255,0.2);}
+.card img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;}
+.card h3{margin-bottom:6px;}
 
-    /* Live Stream */
-    .live iframe{border-radius:12px;width:100%;height:500px;}
+/* Video section */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.video-grid .video-card{position:relative;cursor:pointer;}
+.video-grid .video-card img{border-radius:10px;width:100%;height:140px;object-fit:cover;}
+.video-grid .video-card .play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:36px;color:#fff;opacity:0.8;pointer-events:none;}
 
-    /* Callout */
-    .callout{background:var(--bg-gradient);text-align:center;padding:28px 18px;border-radius:12px;margin:40px 0;}
-    .callout h2{margin-bottom:10px;}
-    .callout p{margin-bottom:14px;}
+/* Live Stream */
+.live iframe{border-radius:12px;width:100%;height:500px;}
 
-    /* Footer */
-    footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
-    .footer-nav{display:flex;gap:10px;}
-    .footer-nav a{color:#bbb;}
+/* Callout */
+.callout{background:var(--bg-gradient);text-align:center;padding:28px 18px;border-radius:12px;margin:40px 0;}
+.callout h2{margin-bottom:10px;}
+.callout p{margin-bottom:14px;}
 
-    /* Responsive */
-    @media(max-width:900px){
-      nav{display:none;flex-direction:column;}
-      #navToggle{display:block;}
-      .hero h1{font-size:28px;}
-    }
-  </style>
+/* Footer */
+footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+.footer-nav{display:flex;gap:10px;}
+.footer-nav a{color:#bbb;}
+
+/* Responsive */
+@media(max-width:900px){
+  nav{display:none;flex-direction:column;}
+  #navToggle{display:block;}
+}
+</style>
 </head>
 <body>
 
-<!-- Top Ticker -->
+<!-- Ticker -->
 <div class="ticker">
   <div class="ticker-inner">
     India won the historic match! | Player X scored a century! | New gallery uploaded! |
@@ -86,11 +94,25 @@
   </nav>
 </header>
 
-<!-- Hero -->
+<!-- Hero Carousel -->
 <section class="hero container">
-  <h1>Sports Hist India</h1>
-  <p>Celebrating the legacy of Indian sports with stories, images, and highlights.</p>
-  <a class="btn" href="#">Explore History</a>
+  <div class="hero-slide active">
+    <img src="https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=1350&q=80" alt="Slide 1">
+    <div class="overlay"><h2>Historic Matches</h2><p>Celebrating the legacy of memorable matches.</p></div>
+  </div>
+  <div class="hero-slide">
+    <img src="https://images.unsplash.com/photo-1582496784448-1c92a9e4205b?auto=format&fit=crop&w=1350&q=80" alt="Slide 2">
+    <div class="overlay"><h2>Players & Legends</h2><p>Profiles of great Indian sportspeople.</p></div>
+  </div>
+  <div class="hero-slide">
+    <img src="https://images.unsplash.com/photo-1576186728706-c8429b6a524f?auto=format&fit=crop&w=1350&q=80" alt="Slide 3">
+    <div class="overlay"><h2>Photo Gallery</h2><p>Capturing moments of triumph.</p></div>
+  </div>
+  <div class="hero-buttons">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+  </div>
 </section>
 
 <!-- Latest Stories -->
@@ -111,6 +133,21 @@
       <img src="https://images.unsplash.com/photo-1576186728706-c8429b6a524f?auto=format&fit=crop&w=800&q=80" alt="Story 3">
       <h3>Photo Gallery</h3>
       <p>Photographs capturing moments of triumph.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Video Section -->
+<section class="section container">
+  <h2>Trending Videos</h2>
+  <div class="video-grid">
+    <div class="video-card">
+      <img src="https://images.unsplash.com/photo-1558888402-2388f290f945?auto=format&fit=crop&w=800&q=80" alt="Video 1">
+      <div class="play-icon">▶</div>
+    </div>
+    <div class="video-card">
+      <img src="https://images.unsplash.com/photo-1604014237430-1a2b0cb51eaf?auto=format&fit=crop&w=800&q=80" alt="Video 2">
+      <div class="play-icon">▶</div>
     </div>
   </div>
 </section>
@@ -140,15 +177,25 @@
 </footer>
 
 <script>
-  // Mobile nav toggle + current year
-  const navToggle = document.getElementById('navToggle');
-  const mainNav = document.getElementById('mainNav');
-  navToggle.addEventListener('click', () => {
-    if(mainNav.style.display === 'flex'){ mainNav.style.display = 'none'; }
-    else{ mainNav.style.display = 'flex'; }
-  });
+// Hero Carousel
+let slides=document.querySelectorAll('.hero-slide');
+let dots=document.querySelectorAll('.hero-buttons span');
+let current=0;
+function showSlide(index){
+  slides.forEach(s=>s.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
+  slides[index].classList.add('active');
+  dots[index].classList.add('active');
+  current=index;
+}
+dots.forEach((dot,i)=>{dot.addEventListener('click',()=>showSlide(i))});
+setInterval(()=>{showSlide((current+1)%slides.length)},5000);
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+// Mobile nav toggle + current year
+const navToggle = document.getElementById('navToggle');
+const mainNav = document.getElementById('mainNav');
+navToggle.addEventListener('click',()=>{mainNav.style.display=(mainNav.style.display==='flex')?'none':'flex';});
+document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 
 </body>

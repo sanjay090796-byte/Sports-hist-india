@@ -1,4 +1,4 @@
-// Mobile nav toggle + year fill
+// Mobile nav toggle + current year
 document.addEventListener('DOMContentLoaded', function(){
   const navToggle = document.getElementById('navToggle');
   const mainNav = document.getElementById('mainNav');
@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 
-  // Fill current year
   const yearSpan = document.getElementById('year');
   yearSpan.textContent = new Date().getFullYear();
 });

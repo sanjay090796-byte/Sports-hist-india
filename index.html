@@ -30,27 +30,30 @@ nav a:hover{background:rgba(255,255,255,0.1);}
 
 /* Hero Carousel */
 .hero{position:relative;overflow:hidden;border-radius:12px;margin:20px 0;}
-.hero-slide{display:none;position:relative;}
+.hero-slide{display:none;position:relative;opacity:0;transition:opacity 1s ease;}
 .hero-slide img{width:100%;height:400px;object-fit:cover;border-radius:12px;}
 .hero-slide .overlay{position:absolute;bottom:20px;left:20px;color:#fff;background:rgba(0,0,0,0.5);padding:12px;border-radius:8px;max-width:70%;}
-.hero-slide.active{display:block;}
+.hero-slide.active{display:block;opacity:1;}
 .hero-buttons{text-align:center;margin-top:10px;}
 .hero-buttons span{cursor:pointer;display:inline-block;width:12px;height:12px;background:#fff;margin:0 4px;border-radius:50%;opacity:0.5;}
 .hero-buttons span.active{opacity:1;}
 
 /* Sections */
-.section{margin:40px 0;}
+.section{margin:40px 0;opacity:0;transform:translateY(30px);transition:all 0.8s ease;}
+.section.visible{opacity:1;transform:translateY(0);}
 .section h2{margin-bottom:20px;}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
 .card{background:rgba(255,255,255,0.05);padding:14px;border-radius:12px;text-align:center;transition:transform 0.3s,box-shadow 0.3s;}
 .card:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(255,255,255,0.2);}
 .card img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;}
 .card h3{margin-bottom:6px;}
+.card p{opacity:0.8;}
 
 /* Video section */
 .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
-.video-grid .video-card{position:relative;cursor:pointer;}
-.video-grid .video-card img{border-radius:10px;width:100%;height:140px;object-fit:cover;}
+.video-grid .video-card{position:relative;cursor:pointer;overflow:hidden;border-radius:10px;transition:transform 0.3s;}
+.video-grid .video-card:hover{transform:scale(1.03);}
+.video-grid .video-card img{width:100%;height:140px;object-fit:cover;}
 .video-grid .video-card .play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:36px;color:#fff;opacity:0.8;pointer-events:none;}
 
 /* Live Stream */
@@ -60,6 +63,8 @@ nav a:hover{background:rgba(255,255,255,0.1);}
 .callout{background:var(--bg-gradient);text-align:center;padding:28px 18px;border-radius:12px;margin:40px 0;}
 .callout h2{margin-bottom:10px;}
 .callout p{margin-bottom:14px;}
+.btn-outline{border:2px solid #fff;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;margin-top:8px;transition:0.3s;}
+.btn-outline:hover{background:#fff;color:var(--purple-1);}
 
 /* Footer */
 footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
@@ -191,12 +196,13 @@ function showSlide(index){
 dots.forEach((dot,i)=>{dot.addEventListener('click',()=>showSlide(i))});
 setInterval(()=>{showSlide((current+1)%slides.length)},5000);
 
+// Fade-in sections on scroll
+let sections=document.querySelectorAll('.section');
+function checkVisible(){sections.forEach(sec=>{let rect=sec.getBoundingClientRect();if(rect.top<window.innerHeight-100){sec.classList.add('visible');}});}
+window.addEventListener('scroll',checkVisible);
+window.addEventListener('load',checkVisible);
+
 // Mobile nav toggle + current year
 const navToggle = document.getElementById('navToggle');
 const mainNav = document.getElementById('mainNav');
-navToggle.addEventListener('click',()=>{mainNav.style.display=(mainNav.style.display==='flex')?'none':'flex';});
-document.getElementById('year').textContent=new Date().getFullYear();
-</script>
-
-</body>
-</html>
+navToggle.addEventListener('

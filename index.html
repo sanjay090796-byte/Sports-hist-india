@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sports Hist India</title>
+<!-- Font Awesome for Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-vtLrD8iwl4Nl9aQZ9o1mD0LCF+YKbV6FbbmNRhI+cEvN1DcjZ1jFQ/7g6k1XQY1O44EUN9Iq6j6ULpEX0U8mVA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 :root{
   --purple-1:#6a00f4;
@@ -65,11 +67,17 @@ nav a:hover{background:rgba(255,255,255,0.1);}
 .callout p{margin-bottom:14px;}
 .btn-outline{border:2px solid #fff;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;margin-top:8px;transition:0.3s;}
 .btn-outline:hover{background:#fff;color:var(--purple-1);}
+.callout-social{display:flex;justify-content:center;gap:14px;margin-top:12px;}
+.callout-social a{color:#fff;font-size:20px;transition:0.3s;}
+.callout-social a:hover{color:#000;}
 
 /* Footer */
 footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
 .footer-nav{display:flex;gap:10px;}
 .footer-nav a{color:#bbb;}
+.footer-social{display:flex;gap:12px;margin-top:10px;}
+.footer-social a{color:#bbb;font-size:18px;transition:0.3s;}
+.footer-social a:hover{color:#fff;}
 
 /* Responsive */
 @media(max-width:900px){
@@ -168,6 +176,12 @@ footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content
   <h2>Stay Updated</h2>
   <p>Subscribe for the latest news, articles, and photos.</p>
   <a class="btn-outline" href="#">Contact Us</a>
+  <div class="callout-social">
+    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
 </section>
 
 <!-- Footer -->
@@ -179,6 +193,12 @@ footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content
     <a href="#">Gallery</a>
     <a href="#">Contact</a>
   </nav>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
 </footer>
 
 <script>
@@ -205,4 +225,9 @@ window.addEventListener('load',checkVisible);
 // Mobile nav toggle + current year
 const navToggle = document.getElementById('navToggle');
 const mainNav = document.getElementById('mainNav');
-navToggle.addEventListener('
+navToggle.addEventListener('click',()=>{mainNav.style.display=(mainNav.style.display==='flex')?'none':'flex';});
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>

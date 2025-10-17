@@ -1,129 +1,70 @@
-<!DOCTYPE html>
-<html lang="hi">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sports Hist India</title>
-<link rel="manifest" href="manifest.json">
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#f4f4f9;}
-header{background:#7b2ff7;color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
-header h1{margin:0;font-size:22px;}
-nav{background:#fff;padding:8px 16px;display:flex;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-nav a{text-decoration:none;color:#555;font-weight:600;padding:6px 10px;border-radius:6px;}
-nav a:hover, nav a.active{background:#f107a3;color:#fff;}
-.marquee{background:#ff0033;color:#fff;padding:6px 12px;overflow:hidden;white-space:nowrap;}
-.marquee span{display:inline-block;padding-right:50px;animation:marquee 15s linear infinite;}
-@keyframes marquee{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
-.container{max-width:1120px;margin:16px auto;padding:0 12px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
-.card{background:#fff;border-radius:10px;box-shadow:0 6px 12px rgba(0,0,0,0.06);padding:12px;overflow:hidden;}
-.card img{max-width:100%;border-radius:8px;margin-top:6px;}
-.card .teams{display:flex;justify-content:space-between;font-weight:700;}
-.card .score{color:#f107a3;font-weight:700;text-align:center;margin:6px 0;}
-footer{text-align:center;color:#666;padding:12px;margin-top:18px;}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sports Hist India — Home</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">Sports Hist India</a>
+      <button id="navToggle" class="nav-toggle" aria-label="menu">☰</button>
+      <nav class="nav" id="mainNav">
+        <a href="/">Home</a>
+        <a href="/history.html">History</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<header>
-  <h1>Sports Hist India</h1>
-  <a href="https://www.youtube.com/live/mGhRoCGjlEY?si=SdQh8hVhvIW3koqM" target="_blank" style="background:#ff0000;padding:6px 12px;border-radius:6px;color:#fff;">🎥 Live</a>
-</header>
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Welcome to Sports Hist India</h1>
+        <p>Celebrating sporting moments and historic matches from across India.</p>
+        <a class="btn" href="/history.html">Explore History</a>
+      </div>
+    </section>
 
-<nav>
-  <a href="#live" class="active">Live</a>
-  <a href="#upcoming">Upcoming</a>
-  <a href="#series">Series</a>
-  <a href="#points">Points</a>
-  <a href="#news">News</a>
-</nav>
+    <section class="features container">
+      <div class="card">
+        <h3>Historic Matches</h3>
+        <p>Stories and scorecards of memorable matches.</p>
+      </div>
+      <div class="card">
+        <h3>Players & Legends</h3>
+        <p>Profiles and achievements of great sportspeople.</p>
+      </div>
+      <div class="card">
+        <h3>Photo Gallery</h3>
+        <p>Photographs capturing moments of triumph.</p>
+      </div>
+    </section>
 
-<div class="marquee"><span>Breaking: Player X scored 50 runs! | Match India A vs India B live | Check latest scores & news...</span></div>
+    <section class="callout">
+      <div class="container">
+        <h2>Stay updated with sports history</h2>
+        <p>We curate articles, photos and stories that matter.</p>
+        <a class="btn-outline" href="/contact.html">Get in touch</a>
+      </div>
+    </section>
+  </main>
 
-<div class="container">
-  <section id="live">
-    <h2>Live Matches</h2>
-    <div id="liveGrid" class="grid"></div>
-  </section>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Sports Hist India — Built with ❤️</p>
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="/history.html">History</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
 
-  <section id="upcoming" style="margin-top:20px;">
-    <h2>Upcoming Matches</h2>
-    <div id="upcomingList" class="grid"></div>
-  </section>
-
-  <section id="series" style="margin-top:20px;">
-    <h2>Series / Tournaments</h2>
-    <div id="seriesList" class="grid"></div>
-  </section>
-
-  <section id="points" style="margin-top:20px;">
-    <h2>Points Table</h2>
-    <div id="pointsContainer"></div>
-  </section>
-
-  <section id="news" style="margin-top:20px;">
-    <h2>Latest News</h2>
-    <div id="newsContainer" class="grid"></div>
-  </section>
-</div>
-
-<footer>© 2025 Sports Hist India</footer>
-
-<script>
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
-
-const SHEET_ID = '1u3LGmmeujhL9PiyIJf_ixjctZ_x3UCZOZJFSIaWFGw0'; // Replace with your Google Sheet ID
-const SHEET_NAME = 'Matches';
-
-async function fetchMatches() {
-  try {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
-    const res = await fetch(url);
-    const text = await res.text();
-    const json = JSON.parse(text.substr(47).slice(0,-2));
-    const rows = json.table.rows;
-    const matches = rows.map(r=>({
-      MatchID: r.c[0]?.v || '',
-      Team1: r.c[1]?.v || '',
-      Team2: r.c[2]?.v || '',
-      Score: r.c[3]?.v || '',
-      Overs: r.c[4]?.v || '',
-      Status: r.c[5]?.v || '',
-      News: r.c[6]?.v || '',
-      MediaURL: r.c[7]?.v || '',
-      PlayerPerformance: r.c[8]?.v || '',
-      ImageURL: r.c[9]?.v || ''
-    }));
-    renderLive(matches);
-    loadUpcoming(matches);
-    loadSeries(matches);
-    loadPoints();
-    loadNews(matches);
-  } catch(e){ console.error("Failed to fetch sheet data:", e); }
-}
-
-function renderLive(matches){
-  const grid = document.getElementById('liveGrid'); grid.innerHTML='';
-  matches.forEach(m=>{
-    const div = document.createElement('div'); div.className='card';
-    div.innerHTML = `<div class="teams"><span>${m.Team1}</span><span>${m.Team2}</span></div>
-      <div class="score">${m.Score} | Overs: ${m.Overs} | ${m.Status}</div>
-      ${m.PlayerPerformance?`<div><strong>Performance:</strong> ${m.PlayerPerformance}</div>`:''}
-      ${m.ImageURL?`<img src="${m.ImageURL}" alt="Player Image">`:''}
-      ${m.MediaURL?`<iframe src="${m.MediaURL}" frameborder="0" allowfullscreen style="width:100%;height:200px;margin-top:6px;"></iframe>`:''}`;
-    grid.appendChild(div);
-  });
-}
-
-function loadUpcoming(matches){ const el=document.getElementById('upcomingList'); el.innerHTML=''; matches.forEach(m=>{ const d=document.createElement('div'); d.className='card'; d.textContent=m.Team1+' vs '+m.Team2; el.appendChild(d); }); }
-function loadSeries(matches){ const el=document.getElementById('seriesList'); el.innerHTML=''; const map={}; matches.forEach(m=>{ const s='District Cup'; map[s]=(map[s]||0)+1; }); for(const s in map){ const d=document.createElement('div'); d.className='card'; d.textContent=s+' ('+map[s]+' matches)'; el.appendChild(d); } }
-function loadPoints(){ const el=document.getElementById('pointsContainer'); el.innerHTML='<table border="1" width="100%"><tr><th>Team</th><th>Mat</th><th>W</th><th>L</th><th>Pts</th></tr><tr><td>India A</td><td>2</td><td>2</td><td>0</td><td>4</td></tr><tr><td>India B</td><td>2</td><td>1</td><td>1</td><td>2</td></tr></table>'; }
-function loadNews(matches){ const el=document.getElementById('newsContainer'); el.innerHTML=''; matches.forEach(m=>{ if(m.News){ const d=document.createElement('div'); d.className='card'; d.textContent=m.News; el.appendChild(d); } }); }
-
-fetchMatches();
-setInterval(fetchMatches,60000); // Auto refresh every 60 sec
-</script>
-
+  <script src="/js/script.js"></script>
 </body>
 </html>

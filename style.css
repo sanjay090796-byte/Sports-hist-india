@@ -23,7 +23,7 @@ body{font-family:Inter, sans-serif; line-height:1.6; background:#111; color:#fff
 .nav-toggle{display:none; font-size:20px; background:transparent; border:none; color:#fff}
 
 /* Hero Section */
-.hero{background:var(--bg-gradient) url('/images/banner.jpg') center/cover no-repeat; padding:80px 18px; text-align:left}
+.hero{background:var(--bg-gradient) url('../images/banner.jpg') center/cover no-repeat; padding:80px 18px; text-align:left}
 .hero h1{font-size:36px; margin-bottom:10px}
 .hero p{margin-bottom:18px; opacity:0.95}
 .btn{background:#fff; color:var(--purple-1); padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:600}
@@ -51,4 +51,3 @@ body{font-family:Inter, sans-serif; line-height:1.6; background:#111; color:#fff
   .nav-toggle{display:block}
   .hero h1{font-size:28px}
 }
-

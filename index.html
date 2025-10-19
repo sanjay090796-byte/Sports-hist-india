@@ -1,178 +1,175 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>News India - Live Updates</title>
-<style>
-body{margin:0;padding:0;font-family:Arial,sans-serif;background:#f5f5f5;color:#111;}
-a{text-decoration:none;color:inherit;}
-.container{max-width:1100px;margin:0 auto;padding:0 15px;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Hist India</title>
+  <style>
+    :root{
+      --primary-color:#d32f2f;
+      --bg-gradient:linear-gradient(135deg,#6a00f4,#a45cff);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:Arial,sans-serif;background:#111;color:#fff;line-height:1.6;}
+    a{text-decoration:none;color:inherit;}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px;}
 
-/* Ticker */
-.ticker{background:#d32f2f;color:#fff;overflow:hidden;white-:nowrap;font-size:14px;padding:8px 0;}
-.ticker-inner{display:inline-block;padding-left:100%;animation:ticker 25s linear infinite;}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+    /* Header */
+    header{display:flex;justify-content:space-between;align-items:center;padding:14px 0;background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:50;}
+    .logo{font-weight:700;font-size:20px;color:#fff;}
+    nav{display:flex;gap:14px;}
+    nav a{padding:8px 10px;border-radius:6px;}
+    nav a:hover{background:rgba(255,255,255,0.1);}
+    #navToggle{display:none;font-size:22px;background:transparent;border:none;color:#fff;}
 
-/* Header */
-header{display:flex;justify-content:space-between;align-items:center;padding:15px 0;background:#b71c1c;color:#fff;position:sticky;top:0;z-index:50;}
-.logo{font-weight:700;font-size:22px;color:#fff;}
-nav{display:flex;gap:15px;}
-nav a{padding:6px 10px;border-radius:5px;}
-nav a:hover{background:rgba(255,255,255,0.2);}
+    /* Hero */
+    .hero{background:var(--bg-gradient) url('https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;padding:80px 18px;text-align:left;}
+    .hero h1{font-size:36px;margin-bottom:12px;}
+    .hero p{margin-bottom:18px;opacity:0.9;}
+    .btn{background:#fff;color:#6a00f4;padding:10px 16px;border-radius:10px;font-weight:600;display:inline-block;margin-top:8px;}
+    .btn-outline{border:2px solid #fff;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;margin-top:8px;}
 
-/* Hero */
-.hero{background:#b71c1c url('https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;padding:60px 15px;color:#fff;border-radius:10px;margin:20px 0;}
-.hero h1{font-size:32px;margin-bottom:10px;}
-.hero p{opacity:0.9;margin-bottom:12px;}
+    /* Cards */
+    .section{margin:40px 0;}
+    .section h2{margin-bottom:20px;color:var(--primary-color);}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+    .card{background:rgba(255,255,255,0.05);padding:14px;border-radius:12px;transition:transform 0.3s, box-shadow 0.3s;}
+    .card:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(255,255,255,0.2);}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;}
+    .card h3{margin-bottom:6px;}
+    .card p{opacity:0.9;font-size:14px;}
 
-/* Tabs */
-.tabs{display:flex;gap:10px;margin-bottom:15px;}
-.tab-btn{padding:8px 12px;border-radius:6px;background:#fff;color:#b71c1c;cursor:pointer;transition:0.3s;}
-.tab-btn.active{background:#b71c1c;color:#fff;}
-.tab-content{display:none;}
-.tab-content.active{display:block;}
+    /* Live Stream & Score */
+    .live iframe{border-radius:12px;width:100%;height:300px;margin-bottom:20px;}
 
-/* Cards Grid */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-bottom:30px;}
-.card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.3s;}
-.card:hover{transform:scale(1.03);}
-.card img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:8px;}
-.card h3{margin-bottom:6px;font-size:16px;color:#b71c1c;}
-.card p{font-size:14px;color:#333;}
+    /* Footer */
+    footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+    .footer-nav{display:flex;gap:10px;}
+    .footer-nav a{color:#bbb;}
 
-/* Video Section */
-.video-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px;}
-.video-section iframe{width:100%;height:200px;border:0;border-radius:10px;}
-
-/* Footer */
-footer{background:#333;color:#ccc;padding:18px 0;display:flex;justify-content:space-between;flex-wrap:wrap;}
-.footer-nav a{margin-left:10px;color:#ccc;}
-.footer-nav a:hover{color:#fff;}
-
-/* Responsive */
-@media(max-width:900px){
-  nav{display:none;}
-  .hero h1{font-size:26px;}
-  .video-section iframe{height:180px;}
-}
-</style>
+    /* Responsive */
+    @media(max-width:900px){
+      nav{display:none;flex-direction:column;}
+      #navToggle{display:block;}
+      .hero h1{font-size:28px;}
+    }
+  </style>
 </head>
 <body>
 
-<!-- Top News Ticker -->
-<div class="ticker">
-  <div class="ticker-inner" id="ticker-content">
-    India vs England Women Live Score Updates! | CM Mohan Yadav announces new schemes! | PM Modi addresses national event! | Entertainment: Bollywood latest updates! |
-  </div>
-</div>
-
 <!-- Header -->
 <header class="container">
-  <a class="logo" href="#">News India</a>
-  <nav>
+  <a class="logo" href="#">Sports Hist India</a>
+  <button id="navToggle">☰</button>
+  <nav id="mainNav">
     <a href="#">Home</a>
-    <a href="#">Cricket</a>
-    <a href="#">CM News</a>
-    <a href="#">PM News</a>
-    <a href="#">Entertainment</a>
+    <a href="#">News</a>
     <a href="#">Videos</a>
+    <a href="#">Contact</a>
   </nav>
 </header>
 
 <!-- Hero Section -->
 <section class="hero container">
-  <h1>India vs England Women: Live Updates</h1>
-  <p>Stay tuned for all the live scores, highlights, and news from today's match.</p>
+  <h1>Sports Hist India</h1>
+  <p>Celebrating the legacy of Indian sports with stories, videos, and live updates.</p>
+  <a class="btn" href="#">Explore Stories</a>
 </section>
 
-<!-- Tabs for Categories -->
-<div class="container">
-  <div class="tabs">
-    <div class="tab-btn active" data-tab="cricket">Cricket</div>
-    <div class="tab-btn" data-tab="cm">CM News</div>
-    <div class="tab-btn" data-tab="pm">PM News</div>
-    <div class="tab-btn" data-tab="entertainment">Entertainment</div>
+<!-- Live Cricket Scores -->
+<section class="section container live">
+  <h2>Live Cricket Scores</h2>
+  <!-- Women Match -->
+  <iframe src="https://www.cricbuzz.com/live-cricket-scoreboard/42300/ind-vs-eng-3rd-t20i-2025" allowfullscreen></iframe>
+  <!-- Men Match -->
+  <iframe src="https://www.cricbuzz.com/live-cricket-scoreboard/42301/ind-vs-aus-3rd-t20i-2025" allowfullscreen></iframe>
+</section>
+
+<!-- Latest Stories -->
+<section class="section container">
+  <h2>Latest Stories</h2>
+  <div class="card-grid">
+    
+    <!-- Women Cricket Highlight -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=800&q=80" alt="India vs England Women">
+      <h3>India vs England Women</h3>
+      <p>भारत ने 2 रनों से रोमांचक जीत दर्ज की। स्मृति मंधाना ने 62 रन की शानदार पारी खेली।</p>
+    </div>
+
+    <!-- Men Cricket Highlight -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1576186728706-c8429b6a524f?auto=format&fit=crop&w=800&q=80" alt="India vs Australia Men">
+      <h3>India vs Australia Men</h3>
+      <p>टीम इंडिया ने 2 रनों से जीत हासिल की। रोहित शर्मा ने 75 रन की शानदार पारी खेली।</p>
+    </div>
+
+    <!-- CM Mohan Yadav -->
+    <div class="card">
+      <img src="https://drive.google.com/uc?export=view&id=1InpZqKJASbVYcG6mVwWDA2uktlBqY4Vx" alt="CM Mohan Yadav">
+      <h3>CM Mohan Yadav</h3>
+      <p>भोपाल में किसान सम्मेलन में CM ने किसानों की भलाई और योजनाओं के बारे में महत्वपूर्ण घोषणाएँ की।</p>
+    </div>
+
+    <!-- PM Modi -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1582496784448-1c92a9e4205b?auto=format&fit=crop&w=800&q=80" alt="PM Modi">
+      <h3>PM Modi</h3>
+      <p>राष्ट्रीय शिक्षा सम्मेलन में प्रधानमंत्री ने युवाओं के लिए डिजिटल शिक्षा और कौशल विकास पर जोर दिया।</p>
+    </div>
+
+    <!-- Entertainment -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1593642632559-0c3c31f6c5aa?auto=format&fit=crop&w=800&q=80" alt="Entertainment">
+      <h3>Entertainment</h3>
+      <p>बॉलीवुड में आज कई नई अपडेट्स सामने आईं। कलाकारों ने नई परियोजनाओं का खुलासा किया।</p>
+    </div>
+
   </div>
+</section>
 
-  <!-- Cricket News -->
- <div class="card">
-  <img src="https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=800&q=80" alt="India vs England Women">
-  <h3>India vs England Women - Match Highlights</h3>
-  <p><strong>भोपाल, 19 अक्टूबर 2025:</strong> भारत और इंग्लैंड के बीच खेला गया तीसरा महिला टी20 मैच रोमांचक रहा। टीम इंडिया ने पहले बल्लेबाजी करते हुए 150 रन बनाए। कप्तान स्मृति मंधाना ने 62 रन की शानदार पारी खेली।</p>
-  <p>इंग्लैंड की टीम ने जवाब में 148 रन बनाकर मैच को बेहद करीब रखा, लेकिन अंत में भारत ने 2 रनों से जीत दर्ज की।</p>
-  <p>आज का मैच दर्शकों के लिए बेहद मनोरंजक रहा, जिसमें कई शानदार कैच और विकेट देखने को मिले। टीम इंडिया की गेंदबाजी ने इंग्लैंड को दबाव में रखा और जीत सुनिश्चित की।</p>
-</div>
-  <div class="card">
-  <img src="https://images.unsplash.com/photo-1576186728706-c8429b6a524f?auto=format&fit=crop&w=800&q=80" alt="India vs Australia Men">
-  <h3>India vs Australia Men - Match Highlights</h3>
-  <p><strong>मुंबई, 19 अक्टूबर 2025:</strong> भारत और ऑस्ट्रेलिया के बीच आज खेले गए मुकाबले में टीम इंडिया ने पहले बल्लेबाजी करते हुए 180 रन बनाए। रोहित शर्मा ने 75 रन की शानदार पारी खेली।</p>
-  <p>ऑस्ट्रेलिया की टीम ने 178 रन बनाए, लेकिन भारत ने 2 रनों से जीत दर्ज की। यह मैच दर्शकों के लिए बेहद रोमांचक और कड़ा मुकाबला रहा।</p>
-  <p>टीम इंडिया के गेंदबाजों ने समय पर विकेट लेकर विपक्षी टीम को दबाव में रखा और जीत सुनिश्चित की।</p>
-</div>
-
-  <!-- CM News -->
- <div class="card">
-  <img src="https://drive.google.com/uc?export=view&id=1InpZqKJASbVYcG6mVwWDA2uktlBqY4Vx" alt="CM Mohan Yadav">
-  <h3>मुख्यमंत्री मोहन यादव का भाषण</h3>
-  <p><strong>भोपाल, 19 अक्टूबर 2025:</strong> मुख्यमंत्री मोहन यादव ने आज भोपाल में आयोजित किसान आभार सम्मेलन में किसानों को संबोधित किया। उन्होंने कहा कि राज्य सरकार किसानों की आय बढ़ाने और कृषि क्षेत्र में सुधार के लिए निरंतर प्रयास कर रही है।</p>
-  <p>मुख्यमंत्री ने कहा, "किसान हमारी प्राथमिकता हैं। उनकी भलाई के लिए हम हर संभव कदम उठा रहे हैं।" उन्होंने राज्य सरकार की नई योजनाओं और सरकारी योजनाओं के तहत मिलने वाले लाभों की जानकारी भी दी।</p>
-  <p>समारोह में किसानों ने मुख्यमंत्री के प्रयासों की सराहना की और कृषि क्षेत्र में आने वाले सुधारों के प्रति उत्साहित नजर आए।</p>
-</div>
-
-  <!-- PM News -->
-<div class="card">
-  <img src="https://images.unsplash.com/photo-1582496784448-1c92a9e4205b?auto=format&fit=crop&w=800&q=80" alt="PM Modi">
-  <h3>प्रधानमंत्री मोदी का संबोधन</h3>
-  <p><strong>नई दिल्ली, 19 अक्टूबर 2025:</strong> प्रधानमंत्री नरेंद्र मोदी ने आज राष्ट्रीय शिक्षा सम्मेलन में देश के युवाओं को संबोधित किया। उन्होंने डिजिटल शिक्षा, स्टार्टअप्स और कौशल विकास के महत्व पर जोर दिया।</p>
-  <p>प्रधानमंत्री ने कहा, "भारत का भविष्य युवा शक्ति में निहित है। हम उन्हें अवसर और संसाधन प्रदान कर रहे हैं ताकि हर युवा अपनी क्षमता को पूर्ण रूप से विकसित कर सके।"</p>
-  <p>सम्मेलन में उपस्थित नेताओं और छात्रों ने प्रधानमंत्री के विचारों को प्रेरणादायक बताया और उनकी योजनाओं का स्वागत किया।</p>
-</div>
-
-  <!-- Entertainment -->
-  <div class="card">
-  <img src="https://images.unsplash.com/photo-1593642632559-0c3c31f6c5aa?auto=format&fit=crop&w=800&q=80" alt="Bollywood Entertainment">
-  <h3>Bollywood: आज की ताज़ा खबरें</h3>
-  <p><strong>मुंबई, 19 अक्टूबर 2025:</strong> बॉलीवुड में आज कई नई अपडेट्स सामने आई हैं। मशहूर अभिनेता राज शर्मा की नई फिल्म की शूटिंग आज मुंबई में शुरू हुई।</p>
-  <p>साथ ही, कई कलाकारों ने हाल ही में सोशल मीडिया पर अपनी नई परियोजनाओं का खुलासा किया। फिल्म प्रेमियों के लिए यह समय काफी रोमांचक साबित होने वाला है।</p>
-  <p>फिल्म इंडस्ट्री में आगामी रिलीज़ और शूटिंग अपडेट्स लगातार सामने आ रही हैं, जिससे दर्शकों की उत्सुकता बढ़ रही है।</p>
-</div>
-
-<!-- Videos Section -->
+<!-- Top Videos -->
 <section class="section container">
   <h2>Top Videos</h2>
-  <div class="video-section">
-    <iframe src="https://www.youtube.com/embed/8AQyMPJ8pE0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/lguA2ezcc9M" allowfullscreen></iframe>
+  <div class="card-grid">
+    <div class="card">
+      <a href="https://www.youtube.com/watch?v=8AQyMPJ8pE0" target="_blank">
+        <img src="https://img.youtube.com/vi/8AQyMPJ8pE0/0.jpg" alt="CM Speech">
+        <h3>CM Mohan Yadav Speech</h3>
+        <p>Highlights from the farmer conference.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="https://www.youtube.com/watch?v=lguA2ezcc9M" target="_blank">
+        <img src="https://img.youtube.com/vi/lguA2ezcc9M/0.jpg" alt="PM Modi Address">
+        <h3>PM Modi Address</h3>
+        <p>Highlights from the national education event.</p>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- Footer -->
 <footer class="container">
-  <p>© 2025 News India</p>
-  <div class="footer-nav">
+  <p>© <span id="year"></span> Sports Hist India</p>
+  <nav class="footer-nav">
     <a href="#">Home</a>
-    <a href="#">Cricket</a>
-    <a href="#">CM News</a>
-    <a href="#">PM News</a>
-    <a href="#">Entertainment</a>
+    <a href="#">News</a>
     <a href="#">Videos</a>
-  </div>
+    <a href="#">Contact</a>
+  </nav>
 </footer>
 
 <script>
-// Tabs functionality
-const tabs = document.querySelectorAll('.tab-btn');
-const contents = document.querySelectorAll('.tab-content');
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    const target = tab.getAttribute('data-tab');
-    contents.forEach(c => c.classList.remove('active'));
-    document.getElementById(target).classList.add('active');
+  // Mobile nav toggle + current year
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  navToggle.addEventListener('click', () => {
+    if(mainNav.style.display === 'flex'){ mainNav.style.display = 'none'; }
+    else{ mainNav.style.display = 'flex'; }
   });
-});
+
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>

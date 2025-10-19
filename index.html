@@ -47,14 +47,19 @@
     /* Live Streaming */
     .live iframe{border-radius:12px;width:100%;height:500px;}
 
-    /* Callout */
-    .callout{background:var(--bg-gradient);text-align:center;padding:28px 18px;border-radius:12px;margin:40px 0;}
-    .callout h2{margin-bottom:10px;}
-    .callout p{margin-bottom:14px;}
+    /* CM Section */
+    .cm-section{font-family:Arial, sans-serif; max-width:700px; margin:40px auto; padding:20px; background-color:#1a1a1a; box-shadow:0 4px 10px rgba(0,0,0,0.5); border-radius:12px; color:#fff;}
+    .cm-section img{width:180px; height:180px; border-radius:50%; border:2px solid #0077cc; object-fit:cover; margin:0 auto; display:block;}
+    .cm-section iframe{border-radius:10px;}
 
     /* Live Score Section */
     .live-score, .live-stream{background:#1a1a1a; padding:20px; border-radius:12px; margin:30px 0; color:#fff;}
     .live-score h3, .live-stream h3{color:#ffcc00; margin-bottom:10px;}
+
+    /* Callout */
+    .callout{background:var(--bg-gradient);text-align:center;padding:28px 18px;border-radius:12px;margin:40px 0;}
+    .callout h2{margin-bottom:10px;}
+    .callout p{margin-bottom:14px;}
 
     /* Footer */
     footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
@@ -119,22 +124,17 @@
   </div>
 </section>
 
-<!-- CM Mohan Yadav Section START -->
-<div class="cm-section" style="font-family:Arial, sans-serif; max-width:700px; margin:40px auto; padding:20px; background-color:#1a1a1a; box-shadow:0 4px 10px rgba(0,0,0,0.5); border-radius:12px; color:#fff;">
+<!-- CM Mohan Yadav Section -->
+<div class="cm-section">
 
-  <!-- CM Photo -->
-  <div style="text-align:center; margin-bottom:20px;">
-    <img src="https://drive.google.com/uc?export=view&id=1InpZqKJASbVYcG6mVwWDA2uktlBqY4Vx" 
-         alt="CM Mohan Yadav" 
-         style="width:180px; border-radius:50%; border:2px solid #0077cc;">
-  </div>
+  <!-- Circular Photo -->
+  <img src="https://drive.google.com/uc?export=view&id=1InpZqKJASbVYcG6mVwWDA2uktlBqY4Vx" alt="CM Mohan Yadav">
 
   <!-- YouTube Video Embed -->
-  <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; margin-bottom:20px;">
+  <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; margin:20px 0;">
     <iframe src="https://www.youtube.com/embed/8AQyMPJ8pE0?start=60&end=180" 
             style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
-            allowfullscreen>
-    </iframe>
+            allowfullscreen></iframe>
   </div>
 
   <!-- News Script -->
@@ -146,7 +146,6 @@
   </div>
 
 </div>
-<!-- CM Mohan Yadav Section END -->
 
 <!-- Live Score Section -->
 <section class="live-score container">
@@ -158,4 +157,41 @@
   <p>दीप्ति शर्मा ने 4 विकेट लिए</p>
 </section>
 
-<!-- Live Streaming Section
+<!-- Live Streaming Section -->
+<section class="live-stream container">
+  <h3>📺 लाइव स्ट्रीमिंग देखें:</h3>
+  <p>मैच को लाइव देखने के लिए <a href="https://www.startv.com/" target="_blank">Star Sports</a> और <a href="https://www.jiostar.com/" target="_blank">JioStar</a> पर जाएं।</p>
+</section>
+
+<!-- Callout -->
+<section class="callout container">
+  <h2>Stay Updated</h2>
+  <p>Subscribe for the latest news, articles, and photos.</p>
+  <a class="btn-outline" href="#">Contact Us</a>
+</section>
+
+<!-- Footer -->
+<footer class="container">
+  <p>© <span id="year"></span> Sports Hist India</p>
+  <nav class="footer-nav">
+    <a href="#">Home</a>
+    <a href="#">History</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact</a>
+  </nav>
+</footer>
+
+<script>
+  // Mobile nav toggle + current year
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  navToggle.addEventListener('click', () => {
+    if(mainNav.style.display === 'flex'){ mainNav.style.display = 'none'; }
+    else{ mainNav.style.display = 'flex'; }
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -50,3 +50,64 @@ body{font-family:Inter, sans-serif; line-height:1.6; background:#111; color:#fff
   .nav-toggle{display:block}
   .hero h1{font-size:28px}
 }
+
+/* ===== Video Section Start ===== */
+.video-section {
+  padding: 40px 20px;
+  background: var(--bg-gradient);
+  color: #fff;
+}
+
+.section-title {
+  text-align: left;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.video-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.video-card h3 {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.thumb-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.thumb-wrapper img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.hidden-video {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+/* ===== Video Section End ===== */

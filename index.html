@@ -3,74 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports Hist India</title>
-  <style>
-    :root{
-      --primary-color:#d32f2f;
-      --bg-gradient:linear-gradient(135deg,#6a00f4,#a45cff);
-    }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:Arial,sans-serif;background:#111;color:#fff;line-height:1.6;}
-    a{text-decoration:none;color:inherit;}
-    .container{max-width:1100px;margin:0 auto;padding:0 18px;}
-
-    /* Header */
-    header{display:flex;justify-content:space-between;align-items:center;padding:14px 0;background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:50;}
-    .logo{font-weight:700;font-size:20px;color:#fff;}
-    nav{display:flex;gap:14px;}
-    nav a{padding:8px 10px;border-radius:6px;}
-    nav a:hover{background:rgba(255,255,255,0.1);}
-    #navToggle{display:none;font-size:22px;background:transparent;border:none;color:#fff;}
-
-    /* Hero */
-    .hero{background:var(--bg-gradient) url('https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;padding:80px 18px;text-align:left;}
-    .hero h1{font-size:36px;margin-bottom:12px;}
-    .hero p{margin-bottom:18px;opacity:0.9;}
-    .btn{background:#fff;color:#6a00f4;padding:10px 16px;border-radius:10px;font-weight:600;display:inline-block;margin-top:8px;}
-    .btn-outline{border:2px solid #fff;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;margin-top:8px;}
-
-    /* Cards */
-    .section{margin:40px 0;}
-    .section h2{margin-bottom:20px;color:var(--primary-color);}
-    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
-    .card{background:rgba(255,255,255,0.05);padding:14px;border-radius:12px;transition:transform 0.3s, box-shadow 0.3s;}
-    .card:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(255,255,255,0.2);}
-    .card img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;}
-    .card h3{margin-bottom:6px;}
-    .card p{opacity:0.9;font-size:14px;}
-
-    /* Live Stream & Score */
-    .live iframe{border-radius:12px;width:100%;height:300px;margin-bottom:20px;}
-
-    /* Footer */
-    footer{background:#0f0b12;color:#ddd;padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
-    .footer-nav{display:flex;gap:10px;}
-    .footer-nav a{color:#bbb;}
-
-    /* Responsive */
-    @media(max-width:900px){
-      nav{display:none;flex-direction:column;}
-      #navToggle{display:block;}
-      .hero h1{font-size:28px;}
-    }
-  </style>
+  <title>Sport Hist India</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-inner">
+    Breaking News: India wins the match! &nbsp; | &nbsp;
+    Player scores hat-trick &nbsp; | &nbsp;
+    Live streaming now available &nbsp; | &nbsp;
+    Stay tuned for updates
+  </div>
+</div>
+
 <!-- Header -->
-<header class="container">
-  <a class="logo" href="#">Sports Hist India</a>
-  <button id="navToggle">☰</button>
-  <nav id="mainNav">
+<header class="site-header container">
+  <a href="#" class="logo">Sport Hist India</a>
+  <nav class="nav">
     <a href="#">Home</a>
     <a href="#">News</a>
     <a href="#">Videos</a>
+    <a href="#">Live</a>
     <a href="#">Contact</a>
   </nav>
+  <button class="nav-toggle">&#9776;</button>
 </header>
 
 <!-- Hero Section -->
-<section class="section video-section">
+<section class="hero container">
+  <h1>Historic Cricket Moments in India</h1>
+  <p>Explore the most memorable matches, players and highlights from Indian sports history.</p>
+  <a href="#" class="btn">Read More</a>
+</section>
+
+<!-- News Overview Cards -->
+<section class="container">
+  <div class="card-grid">
+    <div class="card">
+      <img src="images/news1.jpg" alt="News 1">
+      <h3>India vs Pakistan 1986</h3>
+    </div>
+    <div class="card">
+      <img src="images/news2.jpg" alt="News 2">
+      <h3>Legendary Innings 2003</h3>
+    </div>
+    <div class="card">
+      <img src="images/news3.jpg" alt="News 3">
+      <h3>Historic World Cup 2011</h3>
+    </div>
+    <div class="card">
+      <img src="images/news4.jpg" alt="News 4">
+      <h3>Memorable T20 Finals 2016</h3>
+    </div>
+  </div>
+</section>
+
+<!-- Video Gallery -->
+<section class="section video-section container">
   <h2 class="section-title">Video</h2>
   <div class="video-grid">
 
@@ -149,100 +140,47 @@
   </div>
 </section>
 
-<!-- Live Cricket Scores -->
-<section class="section container live">
-  <h2>Live Cricket Scores</h2>
-  <!-- Women Match -->
-  <iframe src="https://www.cricbuzz.com/live-cricket-scoreboard/42300/ind-vs-eng-3rd-t20i-2025" allowfullscreen></iframe>
-  <!-- Men Match -->
-  <iframe src="https://www.cricbuzz.com/live-cricket-scoreboard/42301/ind-vs-aus-3rd-t20i-2025" allowfullscreen></iframe>
-</section>
-
-<!-- Latest Stories -->
-<section class="section container">
-  <h2>Latest Stories</h2>
-  <div class="card-grid">
-    
-    <!-- Women Cricket Highlight -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1584145258815-091831f6be9d?auto=format&fit=crop&w=800&q=80" alt="India vs England Women">
-      <h3>India vs England Women</h3>
-      <p>भारत ने 2 रनों से रोमांचक जीत दर्ज की। स्मृति मंधाना ने 62 रन की शानदार पारी खेली।</p>
-    </div>
-
-    <!-- Men Cricket Highlight -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1576186728706-c8429b6a524f?auto=format&fit=crop&w=800&q=80" alt="India vs Australia Men">
-      <h3>India vs Australia Men</h3>
-      <p>टीम इंडिया ने 2 रनों से जीत हासिल की। रोहित शर्मा ने 75 रन की शानदार पारी खेली।</p>
-    </div>
-
-    <!-- CM Mohan Yadav -->
-    <div class="card">
-      <img src="https://drive.google.com/uc?export=view&id=1InpZqKJASbVYcG6mVwWDA2uktlBqY4Vx" alt="CM Mohan Yadav">
-      <h3>CM Mohan Yadav</h3>
-      <p>भोपाल में किसान सम्मेलन में CM ने किसानों की भलाई और योजनाओं के बारे में महत्वपूर्ण घोषणाएँ की।</p>
-    </div>
-
-    <!-- PM Modi -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1582496784448-1c92a9e4205b?auto=format&fit=crop&w=800&q=80" alt="PM Modi">
-      <h3>PM Modi</h3>
-      <p>राष्ट्रीय शिक्षा सम्मेलन में प्रधानमंत्री ने युवाओं के लिए डिजिटल शिक्षा और कौशल विकास पर जोर दिया।</p>
-    </div>
-
-    <!-- Entertainment -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1593642632559-0c3c31f6c5aa?auto=format&fit=crop&w=800&q=80" alt="Entertainment">
-      <h3>Entertainment</h3>
-      <p>बॉलीवुड में आज कई नई अपडेट्स सामने आईं। कलाकारों ने नई परियोजनाओं का खुलासा किया।</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- Top Videos -->
-<section class="section container">
-  <h2>Top Videos</h2>
-  <div class="card-grid">
-    <div class="card">
-      <a href="https://www.youtube.com/watch?v=8AQyMPJ8pE0" target="_blank">
-        <img src="https://img.youtube.com/vi/8AQyMPJ8pE0/0.jpg" alt="CM Speech">
-        <h3>CM Mohan Yadav Speech</h3>
-        <p>Highlights from the farmer conference.</p>
-      </a>
-    </div>
-    <div class="card">
-      <a href="https://www.youtube.com/watch?v=lguA2ezcc9M" target="_blank">
-        <img src="https://img.youtube.com/vi/lguA2ezcc9M/0.jpg" alt="PM Modi Address">
-        <h3>PM Modi Address</h3>
-        <p>Highlights from the national education event.</p>
-      </a>
-    </div>
-  </div>
+<!-- Live Stream -->
+<section class="container callout">
+  <h2>Live Streaming</h2>
+  <p>Watch live matches now:</p>
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/lguA2ezcc9M?autoplay=0" title="Live Stream" frameborder="0" allowfullscreen></iframe>
 </section>
 
 <!-- Footer -->
-<footer class="container">
-  <p>© <span id="year"></span> Sports Hist India</p>
-  <nav class="footer-nav">
-    <a href="#">Home</a>
-    <a href="#">News</a>
-    <a href="#">Videos</a>
-    <a href="#">Contact</a>
-  </nav>
+<footer class="site-footer container">
+  <p>&copy; 2025 Sport Hist India</p>
+  <div class="footer-nav">
+    <a href="#">Facebook</a>
+    <a href="#">Twitter</a>
+    <a href="#">Instagram</a>
+    <a href="#">YouTube</a>
+  </div>
 </footer>
 
+<!-- JS -->
 <script>
-  // Mobile nav toggle + current year
-  const navToggle = document.getElementById('navToggle');
-  const mainNav = document.getElementById('mainNav');
-  navToggle.addEventListener('click', () => {
-    if(mainNav.style.display === 'flex'){ mainNav.style.display = 'none'; }
-    else{ mainNav.style.display = 'flex'; }
+const videoWrappers = document.querySelectorAll('.thumb-wrapper');
+
+videoWrappers.forEach(wrapper => {
+  const thumb = wrapper.querySelector('img');
+  const playBtn = wrapper.querySelector('.play-button');
+  const video = wrapper.querySelector('.hidden-video');
+
+  thumb.addEventListener('click', () => {
+    thumb.style.display = 'none';
+    playBtn.style.display = 'none';
+    video.style.display = 'block';
+    video.play();
   });
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+  playBtn.addEventListener('click', () => {
+    thumb.style.display = 'none';
+    playBtn.style.display = 'none';
+    video.style.display = 'block';
+    video.play();
+  });
+});
 </script>
 
 </body>

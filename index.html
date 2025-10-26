@@ -1,184 +1,223 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sport Hist India</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aapka News Portal — Demo</title>
+  <meta name="description" content="Aapka custom news portal template (Hindi). Customize karo aur apne content se bhar do." />
+  <style>
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:Inter, system-ui, -apple-system, "Noto Sans Devanagari", "Noto Sans", Arial;line-height:1.4;color:#111;background:#fafafa}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Container */
+    .container{max-width:1100px;margin:18px auto;padding:0 16px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #e6e6e6;background:#fff;position:sticky;top:0;z-index:40}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{font-weight:700;font-size:20px;color:#d32f2f}
+    .tagline{font-size:12px;color:#666}
+
+    /* Nav */
+    nav{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    nav a{padding:8px 10px;border-radius:6px;font-size:14px;color:#333}
+    nav a:hover{background:#f2f2f2}
+
+    /* Layout */
+    .layout{display:grid;grid-template-columns: 1fr 300px;gap:18px;margin-top:16px}
+    @media (max-width:950px){ .layout{grid-template-columns:1fr} }
+
+    /* Hero */
+    .hero{background:#fff;padding:14px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.03);display:flex;gap:14px;align-items:flex-end}
+    .hero .left{flex:1}
+    .hero img{height:220px;width:48%;object-fit:cover;border-radius:8px}
+    .hero h1{font-size:20px;margin-bottom:8px}
+    .meta{font-size:13px;color:#888;margin-bottom:8px}
+
+    /* Grid */
+    .articles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+    @media (max-width:700px){ .articles{grid-template-columns:1fr} }
+    .card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.03);display:flex;gap:12px;align-items:flex-start}
+    .card img{width:140px;height:90px;object-fit:cover;border-radius:6px}
+    .card h3{font-size:16px;margin-bottom:6px}
+    .card p{font-size:13px;color:#666}
+
+    /* Sidebar */
+    aside{position:relative}
+    .widget{background:#fff;padding:12px;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,0.03);margin-bottom:14px}
+    .widget h4{font-size:15px;margin-bottom:8px}
+    .list-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed #eee}
+    .list-item:last-child{border-bottom:none}
+    .small-thumb{width:56px;height:40px;object-fit:cover;border-radius:4px}
+
+    /* Footer */
+    footer{margin-top:18px;padding:12px;text-align:center;color:#666;font-size:13px}
+
+    /* Search */
+    .search-box{display:flex;gap:8px;align-items:center}
+    .search-box input{flex:1;padding:10px;border-radius:8px;border:1px solid #e0e0e0}
+    .search-box button{padding:10px 12px;border-radius:8px;border:0;background:#d32f2f;color:#fff;cursor:pointer}
+
+    /* Category badges */
+    .badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;background:#f3f3f3;color:#444}
+  </style>
 </head>
 <body>
-
-<!-- Ticker -->
-<div class="ticker">
-  <div class="ticker-inner">
-    Breaking: India wins historic match! &nbsp; | &nbsp;
-    Player scores hat-trick &nbsp; | &nbsp;
-    Live streaming now available &nbsp; | &nbsp;
-    Stay tuned for updates &nbsp; | &nbsp;
-    More news coming up...
-  </div>
-</div>
-
-<!-- Header -->
-<header class="site-header container">
-  <a href="#" class="logo">Sport Hist India</a>
-  <nav class="nav">
-    <a href="#">Home</a>
-    <a href="#">News</a>
-    <a href="#">Videos</a>
-    <a href="#">Live</a>
-    <a href="#">Contact</a>
-  </nav>
-  <button class="nav-toggle">&#9776;</button>
-</header>
-
-<!-- Hero Section -->
-<section class="hero container">
-  <div class="hero-overlay">
-    <h1>Historic Cricket Moments in India</h1>
-    <p>Explore the most memorable matches, players, and highlights from Indian sports history.</p>
-    <a href="#" class="btn">Read More</a>
-  </div>
-</section>
-
-<!-- News Overview Cards -->
-<section class="container">
-  <div class="card-grid">
-    <div class="card">
-      <img src="images/news1.jpg" alt="News 1">
-      <h3>India vs Pakistan 1986</h3>
-      <p>A legendary match remembered by fans.</p>
-    </div>
-    <div class="card">
-      <img src="images/news2.jpg" alt="News 2">
-      <h3>Legendary Innings 2003</h3>
-      <p>Historic innings that defined the player’s career.</p>
-    </div>
-    <div class="card">
-      <img src="images/news3.jpg" alt="News 3">
-      <h3>World Cup 2011</h3>
-      <p>India lifts the trophy after a thrilling final.</p>
-    </div>
-    <div class="card">
-      <img src="images/news4.jpg" alt="News 4">
-      <h3>T20 Finals 2016</h3>
-      <p>Memorable T20 finals with record-breaking moments.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Video Gallery -->
-<section class="section video-section container">
-  <h2 class="section-title">Videos</h2>
-  <div class="video-grid">
-
-    <!-- Video Cards (1-6) -->
-    <div class="video-card">
-      <div class="thumb-wrapper">
-        <img src="images/thumb1.jpg" alt="Video 1">
-        <div class="play-button">&#9658;</div>
-        <video class="hidden-video" controls>
-          <source src="videos/match1.mp4" type="video/mp4">
-        </video>
+  <header>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <div class="brand">
+        <div class="logo">AapkaNews</div>
+        <div class="tagline">Tez • Sach • Sthaniy</div>
       </div>
-      <h3>Match 1 Highlights</h3>
-    </div>
-    <div class="video-card">
-      <div class="thumb-wrapper">
-        <img src="images/thumb2.jpg" alt="Video 2">
-        <div class="play-button">&#9658;</div>
-        <video class="hidden-video" controls>
-          <source src="videos/match2.mp4" type="video/mp4">
-        </video>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <nav>
+          <a href="#">मुख्य</a>
+          <a href="#">राज्य</a>
+          <a href="#">देश</a>
+          <a href="#">मनोरंजन</a>
+          <a href="#">खेल</a>
+          <a href="#">व्यापार</a>
+        </nav>
       </div>
-      <h3>Match 2 Highlights</h3>
     </div>
-    <div class="video-card">
-      <div class="thumb-wrapper">
-        <img src="images/thumb3.jpg" alt="Video 3">
-        <div class="play-button">&#9658;</div>
-        <video class="hidden-video" controls>
-          <source src="videos/match3.mp4" type="video/mp4">
-        </video>
-      </div>
-      <h3>Match 3 Highlights</h3>
-    </div>
-    <div class="video-card">
-      <div class="thumb-wrapper">
-        <img src="images/thumb4.jpg" alt="Video 4">
-        <div class="play-button">&#9658;</div>
-        <video class="hidden-video" controls>
-          <source src="videos/match4.mp4" type="video/mp4">
-        </video>
-      </div>
-      <h3>Match 4 Highlights</h3>
-    </div>
-    <div class="video-card">
-      <div class="thumb-wrapper">
-        <img src="images/thumb5.jpg" alt="Video 5">
-        <div class="play-button">&#9658;</div>
-        <video class="hidden-video" controls>
-          <source src="videos/match5.mp4" type="video/mp4">
-        </video>
-      </div>
-      <h3>Match 5 Highlights</h3>
-    </div>
-    <div class="video-card">
-      <div class="thumb-wrapper">
-        <img src="images/thumb6.jpg" alt="Video 6">
-        <div class="play-button">&#9658;</div>
-        <video class="hidden-video" controls>
-          <source src="videos/match6.mp4" type="video/mp4">
-        </video>
-      </div>
-      <h3>Match 6 Highlights</h3>
+  </header>
+
+  <main class="container">
+    <!-- Search -->
+    <div style="margin-top:12px" class="search-box">
+      <input id="searchInput" type="search" placeholder="खोजें: लेख का शीर्षक, टैग या श्रेणी" />
+      <button id="searchBtn">खोज</button>
     </div>
 
-  </div>
-</section>
+    <div class="layout">
+      <section>
+        <!-- Hero -->
+        <article class="hero" aria-label="मुख्य समाचार">
+          <div class="left">
+            <h1 id="heroTitle">प्रमुख समाचार का शीर्षक — आज का प्रमुख अपडेट</h1>
+            <div class="meta">26 October 2025 • By संपादक • <span class="badge">राजनीति</span></div>
+            <p id="heroExcerpt" style="color:#444;margin-top:10px">
+              यह जगह प्रमुख समाचार का संक्षेप देने के लिए है — आप यहां summary, lede और महत्वपूर्ण points डालें।
+            </p>
+          </div>
+          <img id="heroImage" src="https://picsum.photos/800/500?random=1" alt="Hero image" />
+        </article>
 
-<!-- Live Streaming Section -->
-<section class="container callout">
-  <h2>Live Streaming</h2>
-  <p>Watch live matches now:</p>
-  <iframe width="100%" height="400" src="https://www.youtube.com/embed/lguA2ezcc9M" title="Live Stream" frameborder="0" allowfullscreen></iframe>
-</section>
+        <!-- Article grid -->
+        <div class="articles" id="articlesGrid" style="margin-top:12px">
+          <!-- Cards generated by JS -->
+        </div>
+      </section>
 
-<!-- Footer -->
-<footer class="site-footer container">
-  <p>&copy; 2025 Sport Hist India</p>
-  <div class="footer-nav">
-    <a href="#">Facebook</a>
-    <a href="#">Twitter</a>
-    <a href="#">Instagram</a>
-    <a href="#">YouTube</a>
-  </div>
-</footer>
+      <aside>
+        <div class="widget">
+          <h4>Trending</h4>
+          <div id="trendingList">
+            <!-- JS populate -->
+          </div>
+        </div>
 
-<!-- JS -->
-<script>
-const videoWrappers = document.querySelectorAll('.thumb-wrapper');
+        <div class="widget">
+          <h4>Categories</h4>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge">राजनीति</span>
+            <span class="badge">क्रिकेट</span>
+            <span class="badge">मनोरंजन</span>
+            <span class="badge">व्यापार</span>
+            <span class="badge">टेक</span>
+          </div>
+        </div>
 
-videoWrappers.forEach(wrapper => {
-  const thumb = wrapper.querySelector('img');
-  const playBtn = wrapper.querySelector('.play-button');
-  const video = wrapper.querySelector('.hidden-video');
+        <div class="widget">
+          <h4>Newsletter</h4>
+          <p style="font-size:13px;color:#666;margin-bottom:8px">साप्ताहिक समाचार पाने के लिए ईमेल दर्ज करें।</p>
+          <input type="email" placeholder="आपका ईमेल" style="width:100%;padding:8px;border-radius:8px;border:1px solid #e6e6e6" />
+          <button style="width:100%;margin-top:8px;padding:10px;border-radius:8px;border:0;background:#444;color:#fff">Subscribe</button>
+        </div>
+      </aside>
+    </div>
 
-  thumb.addEventListener('click', () => {
-    thumb.style.display = 'none';
-    playBtn.style.display = 'none';
-    video.style.display = 'block';
-    video.play();
-  });
+    <footer>
+      © <span id="year"></span> AapkaNews — Designed for demo. Customize karo apne hisaab se.
+    </footer>
+  </main>
 
-  playBtn.addEventListener('click', () => {
-    thumb.style.display = 'none';
-    playBtn.style.display = 'none';
-    video.style.display = 'block';
-    video.play();
-  });
-});
-</script>
+  <script>
+    // Demo data — replace/fetch from your API or CMS
+    const articles = [
+      { id:1, title:"राज्य विधानसभा में बड़ा फैसला लिया गया", excerpt:"यहाँ लेख का संक्षेप दिखेगा — महत्वपूर्ण जानकारी और प्रमुख बिंदु।", img:"https://picsum.photos/300/200?random=2", tag:"राजनीति", date:"2025-10-25" },
+      { id:2, title:"क्रिकेट: टॉप टीम ने अंतिम क्षण में जीत दर्ज की", excerpt:"मैच रिपोर्ट, पुछले ओवर और प्लेयर ऑफ़ द मैच।", img:"https://picsum.photos/300/200?random=3", tag:"खेल", date:"2025-10-24" },
+      { id:3, title:"बड़ी टेक कम्पनी ने नया प्रोडक्ट लॉन्च किया", excerpt:"उत्पाद के फीचर्स और मार्केट इम्पैक्ट का सारांश।", img:"https://picsum.photos/300/200?random=4", tag:"टेक", date:"2025-10-23" },
+      { id:4, title:"मनोरंजन: फिल्म ने बॉक्स ऑफिस पर जलवा दिखाया", excerpt:"फिल्म समीक्षाएं और कलेक्शन।", img:"https://picsum.photos/300/200?random=5", tag:"मनोरंजन", date:"2025-10-22" },
+      { id:5, title:"स्थानीय व्यापारियों का प्रदर्शन बढ़ा", excerpt:"अर्थव्यवस्था से जुड़ी ताज़ा खबरें और आंकड़े।", img:"https://picsum.photos/300/200?random=6", tag:"व्यापार", date:"2025-10-21" },
+      { id:6, title:"हेल्थ टिप्स: सर्दियों में कैसे रखें सेहत", excerpt:"डॉक्टर की सुझाई दिनचर्या और सलाह।", img:"https://picsum.photos/300/200?random=7", tag:"लाइफस्टाइल", date:"2025-10-20" }
+    ];
 
+    // Populate year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Render hero (first article)
+    const hero = articles[0];
+    document.getElementById('heroTitle').textContent = hero.title;
+    document.getElementById('heroExcerpt').textContent = hero.excerpt;
+    document.getElementById('heroImage').src = hero.img;
+
+    // Render article cards
+    const grid = document.getElementById('articlesGrid');
+    const trending = document.getElementById('trendingList');
+
+    function renderList(list) {
+      grid.innerHTML = '';
+      list.forEach(a=>{
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <img loading="lazy" src="${a.img}" alt="${escapeHtml(a.title)}" />
+          <div>
+            <h3>${escapeHtml(a.title)}</h3>
+            <div class="meta">${a.date} • <span class="badge">${escapeHtml(a.tag)}</span></div>
+            <p>${escapeHtml(a.excerpt)}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      // trending: top 4 by id (demo)
+      trending.innerHTML = '';
+      list.slice(0,4).forEach(t=>{
+        const el = document.createElement('div');
+        el.className = 'list-item';
+        el.innerHTML = `<img class="small-thumb" src="${t.img}" alt="thumb"/><div><strong style="font-size:14px">${escapeHtml(t.title)}</strong><div style="font-size:12px;color:#777">${t.date}</div></div>`;
+        trending.appendChild(el);
+      });
+    }
+
+    // Basic search/filter
+    document.getElementById('searchBtn').addEventListener('click', doSearch);
+    document.getElementById('searchInput').addEventListener('keypress', (e)=>{ if(e.key==='Enter') doSearch() });
+
+    function doSearch(){
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      if(!q){ renderList(articles); return; }
+      const filtered = articles.filter(a => (a.title + ' ' + a.excerpt + ' ' + a.tag).toLowerCase().includes(q));
+      renderList(filtered);
+    }
+
+    // Safe text escape
+    function escapeHtml(str){ return String(str).replace(/[&<>"']/g, (m)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+
+    // initial render
+    renderList(articles);
+
+    /* Integration tips:
+       - Replace the `articles` array by fetching your API: fetch('/api/news').then(r=>r.json()).then(data=>{ articles = data; renderList(articles); })
+       - For server-side rendering, convert HTML structure into your templating engine (PHP/Node/Next/Jinja).
+       - Use lazy-loading images and pagination for large feeds.
+       - Add structured data (JSON-LD) for SEO and OpenGraph meta tags for social sharing.
+    */
+  </script>
 </body>
 </html>
